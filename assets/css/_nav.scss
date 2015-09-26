@@ -1,0 +1,47 @@
+/* menu */
+nav {
+  background-color: #2A2B2E;
+  height: 100%;
+  top: 0px;
+  &.col-md-2{
+    position: fixed;
+    padding: $header-height 0 0 0;
+  }
+}
+
+.nav-stacked>li+li{
+  margin-top: 0;
+}
+
+.nav-pills>li>a{
+  border-bottom: 1px solid #36393d;
+  border-radius: 0;
+  color: #BEC1C4;
+  display: block;
+  padding: 20px 15%;
+}
+
+.nav-pills>li>a:hover, .nav>li>a:focus{
+  background-color: #232427;
+  color: $lighterColor;
+  outline: 0;
+}
+
+nav .glyphicon{    
+  font-size: 16pt;
+  padding-right: 10px;
+}
+
+#menu-btn {
+  background-color: transparent;
+  border: 0;
+  font-size: 20pt;
+  left: 20px;
+  position: fixed;
+  top: 25px;
+  z-index: 10;
+}
+
+#menu-btn:focus, button:focus, input:focus, select:focus, input[type=file]:focus{
+  outline: 0;
+}

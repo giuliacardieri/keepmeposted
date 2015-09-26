@@ -1,0 +1,23 @@
+footer {
+  background-color: $bgColor;
+  padding: 15px 0;
+  position: absolute;
+  width: 100%;
+  p {
+    margin: 0 auto;
+    padding: 15px 0;
+    text-align: center;
+    a {
+      color: $textColor;
+      font-size: 9pt;
+      &.logo-footer {
+        font-family: lato-regular;
+        font-size: 18pt;
+      }
+      &:hover {
+        color: $textColor;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,167 @@
+header.index {
+  background-color: transparent;
+  left: 0;
+  margin: auto;
+  opacity: 1;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 5%;
+  z-index: 1;
+  h1 {
+    margin: 0;
+    a {
+      @extend .main-h1;
+      font-size: 20pt;
+      .logo {
+        max-width: 36px;
+      }
+    }
+  }
+  .btn-wrapper-login {
+    text-align: right;
+  }
+  button {
+    font-size: 13pt;
+    width: 25%;
+  }
+}
+
+.photo-main {
+  height: 650px;
+  position: relative;
+  p {
+    font-size: 24pt;
+  }
+  &::before {
+    display: none;
+    background-image: url('../images/postais2.png');
+    content: "";
+    display: block;
+    height: 650px;
+    opacity: 0.9;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+  }
+}
+
+.text-container {
+  margin-top: -1%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  width: 100%;
+}
+
+.color-overlay {
+  background-color: $darkerColor;
+  height: 100%;
+  opacity: 0.3;
+  position: absolute;
+  width: 100%;
+}
+
+.what-section {
+  margin: 5% 0;
+}
+
+.text-what-section {
+  bottom: 0;
+  height: 40%;
+  left: 0;
+  margin: auto;
+  padding: 0 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.col-what-section {
+  height: 250px;
+}
+
+.button.start {
+  font-size: 15pt;
+  padding: 5px 0;
+  width: 25%;
+}
+
+/* signup form */
+.modal-content {
+  background-color: $textColor;
+}
+
+.modal-body {
+  text-align: center;
+  form {
+    margin: 10px 0;
+    input, select {
+      background-color: $inputBgColor;
+      border: 0;
+      border-radius: $border-radius;
+      color: $textColor2;
+      margin: 5px;
+      padding: 0 10px;
+      z-index: 2;
+    }
+  }
+  p {
+    color: $darkerColor;
+    display: inline-block;
+    font-size: 11pt;
+  }
+  hr{
+    border-top-color: $inputBgColor;
+    display: inline-block;
+    margin: 20px 15px;
+    vertical-align: middle;
+    width: 33%;
+  }
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px $inputBgColor inset;
+}
+
+.button.signup {
+  margin: 15px auto;
+  padding: 10px 20px;
+  width: 75%;
+}
+
+::-webkit-input-placeholder {
+  color: $textColor2;
+}
+
+:-moz-placeholder {
+  color: $textColor2;
+}
+
+::-moz-placeholder {
+  color: $textColor2;
+}
+
+:-ms-input-placeholder {
+  color: $textColor2;
+}
+
+.label-signup {
+  color: $textColor2;
+  margin-left: 2%;
+  opacity: 0;
+  top: 25%;
+}
+
+.btn-login{
+  @extend .button;
+  font-size: 13pt;
+  padding: 10px 0;
+  width: 75%;
+}

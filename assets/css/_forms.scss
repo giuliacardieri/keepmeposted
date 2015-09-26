@@ -1,0 +1,80 @@
+form {
+    margin: 15px auto;
+}
+
+input,
+input[type="checkbox"] {
+    @extend form;
+    background-color: transparent;
+    border: 0;
+    border-bottom: solid $border-width $lighterColor;
+    color: $textColor;
+    height: 50px;
+    width: 100%;
+    &#photo {
+        padding: 15px 0 0 10%;
+    }
+    &#date {
+        padding-left: 25%;
+    }
+}
+
+select {
+    @extend input;
+    border: solid $border-width #CC3748;
+    border-radius: $border-radius;
+}
+
+label {
+    bottom: 35%;
+    color: $textColor;
+    position: absolute;
+    &.available {
+        left: 9%;
+    }
+}
+
+input[type="reset"],
+input[type="submit"],
+.button, 
+.btn-primary {
+    background-color: $lighterColor;
+    border: 0 0 0 0;
+    border-radius: $border-radius;
+    box-shadow: 0px 2px 0px $darkerColor;
+    font-size: 12pt;
+    height: initial;
+    margin: 15px;
+    width: 15%;
+}
+
+.select-postcard-option { 
+    text-align: center;
+    button {   
+        background-color: $lighterColor;
+        border: 0;
+        font-size: 12pt;
+        margin: 15px -2px;
+        width: 15%;
+        &.received-btn {
+            border-radius: $border-radius 0 0 $border-radius;
+        }
+        &.swap-btn {
+            border-radius: 0 $border-radius $border-radius 0;
+        }
+        &.clicked, &.clicked:hover {
+            background-color: $darkerColor;
+        }
+        &:hover {
+            background-color: $lighterColor;
+        }
+    }
+}
+
+.button-wrapper {
+    text-align: right;
+}
+
+.error {
+    color: #A62929;
+}

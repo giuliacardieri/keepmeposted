@@ -1,0 +1,52 @@
+$darkerColor: #80242E; //#3C3E41; //#2a2646;
+$lighterColor: #AD2F3D; //#CC3748; //#43398f;
+$textColor: #f9f9f9;
+$bgColor: #444; //#3C3E41; //#31303B;
+$textColor2: #3d3d3d;
+$inputBgColor: #cdcdcd;
+
+$darkerColorMenu: #2A2B2E;
+
+
+$header-height: 80px;
+
+$border-radius: 5px;
+$border-width: 2px;
+
+@font-face {
+    font-family: 'lato';
+    src: url('../fonts/Lato-Light.ttf');
+    font-style: light;
+}
+
+@font-face {
+    font-family: 'lato-regular';
+    src: url('../fonts/Lato-Regular.ttf');
+    font-weight: normal;
+}
+
+
+@font-face {
+    font-family: 'raleway';
+    src: url('../fonts/Raleway-Regular.ttf');
+}
+
+@mixin SocialColor($name, $color){
+  .#{$name}{
+    background-color: $color;
+    box-shadow: 0px 2px 0px $color/1.5;
+    &:hover{
+      background-color: $color/1.5;
+    }
+  }
+}
+
+@mixin vendorPrefix($element, $attr, $value){
+  $prefix-names: (':webkit', 'moz', ':moz', 'ms');
+  @each $prefix in $prefix-names{
+    :#{$prefix}-#{$element}{ 
+      #{$attr}: $value; 
+    }
+
+}
+}

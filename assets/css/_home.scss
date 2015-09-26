@@ -1,0 +1,23 @@
+.dashboard{
+  margin: 2.5% -15px;
+  .color-overlay{
+    display: none;
+  }
+}
+
+.col-md-10.recommendations-wrapper{
+  @extend main;
+  background-color: #2A2B2E - 10;
+  margin-top: 0;
+}
+
+.postcards-wrapper{
+  padding: 2.5% 0;
+}
+
+
+@media (min-width: 1024px){
+  .popular-wrapper:hover .color-overlay{
+      display: block;
+  }
+}
