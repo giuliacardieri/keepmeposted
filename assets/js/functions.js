@@ -145,16 +145,23 @@ $(function() {
     });
 
     $("input").focus(function() {
-        $("." + $(this).attr("id") + "-label").animate({
-            bottom: "-10%"
+        var id = $(this).attr("id")
+        , label = "." + id + "-label";
+        
+        $(label).animate({
+            top: "5%"
         }, 500);
-        $(this).css("padding-left", 0);
+        $(label).addClass('label-selected');
+        if (id === 'date' || id === 'photo') {
+            $('input#' + id).css('padding-left', 0);
+        }
     });
     
     $(".select-postcard-option button").on('click', function(){
         $('.select-postcard-option button').removeClass('clicked');
         $(this).addClass('clicked');
-        $('.received-field').toggle();
+        $('.received-field').toggleClass('hidden');
+        $('.swap').toggleClass('hidden');
     });
 
 });

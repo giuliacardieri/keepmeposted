@@ -1,6 +1,8 @@
+
+
 /* menu */
 nav {
-  background-color: #2A2B2E;
+  background-color: $nav-bg-color;
   height: 100%;
   top: 0px;
   &.col-md-2{
@@ -14,7 +16,7 @@ nav {
 }
 
 .nav-pills>li>a{
-  border-bottom: 1px solid #36393d;
+  border-bottom: 1px solid $nav-border-color;
   border-radius: 0;
   color: #BEC1C4;
   display: block;
@@ -22,7 +24,7 @@ nav {
 }
 
 .nav-pills>li>a:hover, .nav>li>a:focus{
-  background-color: #232427;
+  background-color: $nav-hover-color;
   color: $lighterColor;
   outline: 0;
 }

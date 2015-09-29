@@ -8,20 +8,13 @@
     <div class="postcard-text-container">
         <h3><?php echo $postcard['description'] ?></h3>
 
-        <p>Sent by
-            <?php echo $postcard['sender'] ?> -
-            <?php echo $postcard['country'] ?>
-        </p>
-        <p>
-            <?php echo $postcard['type'] ?> -
-            <?php echo $postcard['state'] ?></p>
+        <p>Sent by <?php echo $postcard['sender'] . ' - ' . $postcard['country'] ?></p>
+        <p> <?php echo $postcard['type'] . ' - ' . $postcard['state'] ?></p>
 
-        <p>Date:
-            <?php echo $postcard['date'] ?></p>
+        <p>Date: <?php echo $postcard['date'] ?></p>
 
         <?php if ($postcard['postcrossing_id']): ?>
-        <p>Postcrossing ID:
-            <?php echo $postcard['postcrossing_id']; ?></p>
+        <p>Postcrossing ID: <?php echo $postcard['postcrossing_id']; ?></p>
         <?php endif; ?>
 
         <?php if ($postcard['favorite'] == 1): ?>
@@ -30,9 +23,7 @@
             Favorite
         </div>
         <?php endif; ?>
-
     </div>
-
 </div>
 
 <div class="col-md-12 buttons">

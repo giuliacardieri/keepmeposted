@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 
+$route['history'] = 'history';
 $route['collection'] = 'collection';
 $route['favorites'] = 'favorites';
 $route['search'] = 'search';

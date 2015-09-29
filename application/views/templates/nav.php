@@ -26,6 +26,12 @@
                 </a>
             </li>
             <li>
+                <a href="<?php echo site_url('history'); ?>">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    <span class="not-mobile">History</span>
+                </a>
+            </li>
+            <li>
                 <a href="<?php echo site_url('profile'); ?>">
                     <span class="glyphicon glyphicon-user"></span>
                     <span class="not-mobile">Profile</span>

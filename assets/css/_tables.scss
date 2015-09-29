@@ -3,7 +3,7 @@
 }
 
 .table{
-  background-color: #4D5054;
+  background-color: $bg-color + 30;
   border-radius: 10px;
   margin: 25px 0;
 }
@@ -13,7 +13,7 @@
 }
 
 .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
-  border-top: 2px solid #36393d;
+  border-top: 1px solid $bg-color;
   padding: 12px 5px;
   vertical-align: middle;
 }

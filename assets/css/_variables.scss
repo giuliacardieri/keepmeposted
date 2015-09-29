@@ -1,17 +1,19 @@
-$darkerColor: #80242E; //#3C3E41; //#2a2646;
-$lighterColor: #AD2F3D; //#CC3748; //#43398f;
+$darkerColor: #614170;//#303F9F; //#362E73; // //#87242F; //#80242E; //#3C3E41; 
+$lighterColor: #7E5691;//#3F51B5; //#43398f; // //#AD2F3D; //#CC3748; 
+
 $textColor: #f9f9f9;
-$bgColor: #444; //#3C3E41; //#31303B;
+$bg-color: #424242; //#3C3E41; //#31303B;
 $textColor2: #3d3d3d;
 $inputBgColor: #cdcdcd;
 
-$darkerColorMenu: #2A2B2E;
-
+$nav-bg-color: #303030;
+$nav-border-color: #3d3d3d;
+$nav-hover-color: #2c2c2c;
 
 $header-height: 80px;
 
 $border-radius: 5px;
-$border-width: 2px;
+$border-width: 1px;
 
 @font-face {
     font-family: 'lato';

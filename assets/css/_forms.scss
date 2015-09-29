@@ -3,35 +3,34 @@ form {
 }
 
 input,
-input[type="checkbox"] {
-    @extend form;
+input[type="checkbox"],
+select {
     background-color: transparent;
     border: 0;
     border-bottom: solid $border-width $lighterColor;
+    border-radius: 0;
     color: $textColor;
-    height: 50px;
+    height: 35px;
+    margin: 20px 0;
     width: 100%;
-    &#photo {
-        padding: 15px 0 0 10%;
+    &#photo, &#date {
+        padding: 6px 0 6px 25%;
     }
-    &#date {
-        padding-left: 25%;
-    }
-}
-
-select {
-    @extend input;
-    border: solid $border-width #CC3748;
-    border-radius: $border-radius;
 }
 
 label {
-    bottom: 35%;
+    top: 37%;
     color: $textColor;
+    font-weight: normal;
     position: absolute;
     &.available {
         left: 9%;
     }
+}
+
+.label-selected {
+    color: $lighterColor;
+    font-size: 9pt;
 }
 
 input[type="reset"],
@@ -39,13 +38,12 @@ input[type="submit"],
 .button, 
 .btn-primary {
     background-color: $lighterColor;
-    border: 0 0 0 0;
+    border: 0;
     border-radius: $border-radius;
-    box-shadow: 0px 2px 0px $darkerColor;
-    font-size: 12pt;
     height: initial;
-    margin: 15px;
-    width: 15%;
+    margin: 0 5px;
+    padding: 5px 10px;
+    width: 10%;
 }
 
 .select-postcard-option { 
@@ -55,6 +53,7 @@ input[type="submit"],
         border: 0;
         font-size: 12pt;
         margin: 15px -2px;
+        padding: 5px;
         width: 15%;
         &.received-btn {
             border-radius: $border-radius 0 0 $border-radius;
@@ -76,5 +75,8 @@ input[type="submit"],
 }
 
 .error {
+    font-size: 10pt;
     color: #A62929;
+    line-height: 10pt;
+    margin-top: -10px;
 }
