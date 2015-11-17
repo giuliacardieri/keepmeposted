@@ -1,146 +1,228 @@
 @import "variables";
 
-body {
-  background-color: $bg-color;
-  color: $textColor;
-  font-family: lato, raleway, helvetica;
+ body {
+    background-color: $bg-color;
+    color: $textColor;
+    font-family: lato, raleway, helvetica;
 }
 
 header {
-  &.col-md-12{  
-    background-color: $lighterColor;
-    box-shadow: 0px 1px 5px #2b2b2b;
-    padding: 20px 20px;
-    position: fixed;
-    z-index: 3;
-  }
-  .profile-img-wrapper{
-    border-radius: ($border-radius*4);
-    float: right;
-    height: 40px;
-    margin: auto;
-    overflow: hidden;
-    position: relative;
-    width: 40px;
-    img{
-      left: -25%;
-      position: absolute;
-      top: 0;
-      width: 150%;
+    &.col-md-12 {
+        background-color: $lighterColor;
+        box-shadow: 0px 1px 5px #2b2b2b;
+        padding: 20px 20px;
+        position: fixed;
+        z-index: 3;
     }
-  }
+    .header-img-wrapper {
+        border-radius: ($border-radius*4);
+        float: right;
+        height: 40px;
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+        width: 40px;
+        img {
+            cursor: pointer;
+            left: -25%;
+            position: absolute;
+            top: 0;
+            width: 150%;
+        }
+    }
+    .search-field-wrapper {
+        background-color: #424242;
+        border-radius: 10px;
+        opacity: 0.8;
+        position: relative;
+        form {
+          margin: 0;
+          #search-field {
+              position: relative;
+              width: 90%;
+              margin: 0 5% 0 0;
+              border: 0;
+              height: 40px;
+              line-height: 38px;
+          }
+          .glyphicon-search {
+              cursor: pointer;
+              font-size: 12pt;
+              line-height: 40px;
+              position: absolute;
+              right: 10px;
+          }
+      }
+    }
+}
+@include placeholder('#search-field', $textColor);
+
+.field-error {
+    border-bottom-color: $errorColor;
+    color: $errorColor;
+    font-size: 10pt;
 }
 
-.user-info{
-  color: $textColor2;
-  position: absolute;
-  right: 20px;
-  top: $header-height - 15px;
-  z-index: 3;
-  ul{
-    background-color: ($textColor - 25);
-    border-radius: $border-radius;
-    margin: 0;
-    padding: 10px 0;
-    li{
-      list-style: none;
-      padding: 5px 25px;
+.user-info {
+    color: $textColor2;
+    position: fixed;
+    right: 20px;
+    top: $header-height - 15px;
+    z-index: 3;
+    ul {
+        background-color: ($textColor - 25);
+        border-radius: $border-radius;
+        margin: 0;
+        padding: 10px 0;
+        li {
+            list-style: none;
+            padding: 5px 25px;
+            a {
+                color: $textColor2;
+                @media (max-width: 1023px) {
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
     }
-  }
-  &::before{
-    content: "";
-    border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 10px solid ($textColor - 25);
-    display: block;
-    height: 0;
-    margin-left: 70%;
-    width: 0;
-  }
+    &::before {
+        content: "";
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid ($textColor - 25);
+        display: block;
+        height: 0;
+        margin-left: 70%;
+        width: 0;
+    }
 }
 
 h1 {
-  margin: 0;
-  a, .main-h1{
-    color: $textColor;
-    font-family: lato-regular;
-    font-size: 16pt;
-    line-height: 18pt;
-    text-decoration: none;
-    vertical-align: middle;
-    &:hover {
-      color: $textColor;
-      text-decoration: none;
+    margin: 0;
+    a, .main-h1 {
+        color: $textColor;
+        font-family: lato-regular;
+        font-size: 16pt;
+        line-height: 18pt;
+        text-decoration: none;
+        vertical-align: middle;
+        &:hover {
+            color: $textColor;
+            text-decoration: none;
+        }
     }
-  }
 }
 
 .logo {
-  margin: -15px 0 0 8px;
-  max-width: 2.5%;
+    margin: -15px 0 0 8px;
+    max-width: 2.5%;
 }
 
 h2 {
-  font-size: 16pt;
-  line-height: 18pt;
-  margin: 0;
-//  &::after {
-//    border: 1px solid $lighterColor;
-//    content: "";
-//    display: block;
-//    margin-top: 3px;
-//    position: relative;
-//    width: 4%;
-//  }
+    font-size: 16pt;
+    line-height: 18pt;
+    margin: 0;
+    //  &::after {
+    //    border: 1px solid $lighterColor;
+    //    content: "";
+    //    display: block;
+    //    margin-top: 3px;
+    //    position: relative;
+    //    width: 4%;
+    //  }
 }
 
+
+.col-md-3 h2{
+  line-height: 60px;
+}
+
+
 h3 {
-  font-size: 14pt;
-  line-height: 16pt;
-  margin: 0;
-//  &::after{
-//    @extend h2::after;
-//  }
-//  &.index::after{
-//    border: 0;
-//  }
+    font-size: 14pt;
+    line-height: 16pt;
+    margin: 0;
+    //  &::after{
+    //    @extend h2::after;
+    //  }
+    //  &.index::after{
+    //    border: 0;
+    //  }
+
 }
 
 h4 {
-  font-family: lato-regular;
-  color: $darkerColor;
+    color: $darkerColor +50;
+    font-family: lato-regular;
+    font-size: 14pt;
+    line-height: 16pt;
 }
 
 p {
-  font-size: 12pt;
-  line-height: 16pt;
+    font-size: 12pt;
+    line-height: 14pt;
+    // &.small {
+    //     font-size: 10pt;
+    //     line-height: 12pt;
+    // }
 }
 
-main{
-  margin-left: 16.66666667%;
-  &.index{
-    margin-left: 0;
-  }
+a {
+    color: $textColor - 75;
+    @media (min-width: 1023px) {
+        &:hover {
+            color: $textColor - 75;
+        }
+    }
 }
 
-main.col-md-12 {
-  padding: 5% 12.5%;
+ul {
+    padding: 0;
+    li {
+        list-style: none;
+    }
 }
 
-main.col-md-10 {
-  margin-top: $header-height;
-  padding: 5%;
+.main.col-md-12 {
+    padding: 5% 12.5%;
 }
 
-@include SocialColor('twitter', #55acee);
-@include SocialColor('fb', #3b5998);
+.main.col-md-10 {
+    margin-top: $header-height;
+    padding: 5%;
+}
+
+.flag-sibling {
+    display: inline-block;
+    margin-bottom: -2.5%;
+}
+
+.country-flag {
+    display: inline-block;
+    max-width: 23px;
+    padding: 0 2px;
+    vertical-align: initial;
+}
+
+.img-responsive {
+  border-radius: $border-radius;
+}
+
+@include SocialColor('twitter',
+#55acee);
+@include SocialColor('fb',
+#3b5998);
 @import "nav";
+@import "postcards";
+@import "settings";
+@import "results";
+@import "profile";
 @import "footer";
 @import "forms";
 @import "index";
 @import "tables";
 @import "home";
-@import "categories";
-@import "edit";
-@import "delete";
+@import "postcard-view";
 @import "mediadeletar";

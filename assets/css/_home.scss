@@ -1,23 +1,16 @@
 .dashboard{
-  margin: 2.5% -15px;
-  .color-overlay{
-    display: none;
-  }
+    margin: 2.5% -15px;
+    .color-overlay{
+        display: none;
+    }
 }
 
 .col-md-10.recommendations-wrapper{
-  @extend main;
-  background-color: $nav-hover-color;
-  margin-top: 0;
-}
-
-.postcards-wrapper{
-  padding: 2.5% 0;
-}
-
-
-@media (min-width: 1024px){
-  .popular-wrapper:hover .color-overlay{
-      display: block;
-  }
+    @extend .main;
+    background-color: $nav-active-color;
+    margin-top: 0;
+    padding: 4% 5%;
+    &:last-child {
+        background-color: $bg-color;
+    }
 }

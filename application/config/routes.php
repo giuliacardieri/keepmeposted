@@ -50,11 +50,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-
+$route['results/(:any)/(:any)'] = 'search/results/$1/$2';
+$route['profile/(:any)'] = 'profile/index/$1';
+$route['profile/load_profile'] = 'profile/load_profile';
+$route['profile/update_profile'] = 'profile/update_profile';
+$route['profile'] = 'profile';
+$route['logout'] = 'login/logout';
+$route['login'] = 'login';
 $route['history'] = 'history';
 $route['collection'] = 'collection';
+$route['favorites/add_favorite/(:any)/(:any)'] = 'favorites/add_favorite/$1';
+$route['favorites/remove_favorite/(:any)/(:any)'] = 'favorites/remove_favorite/$1';
 $route['favorites'] = 'favorites';
-$route['search'] = 'search';
+$route['search'] = 'search/search';
+$route['swap'] = 'swap';
+$route['settings'] = 'settings';
+$route['postcard/insert_postcard'] = 'postcard/insert_postcard';
+$route['postcard/edit_postcard'] = 'postcard/edit_postcard';
+$route['postcard/delete'] = 'postcard/delete';
 $route['postcard/add'] = 'postcard/add';
 $route['postcard/(:any)'] = 'postcard/view/$1';
 $route['postcard'] = 'postcard';
@@ -62,3 +75,5 @@ $route['home'] = 'home';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['(:any)/postcard/(:any)'] = 'postcard/view/$1';
+$route['(:any)'] = 'profile/index/$1';

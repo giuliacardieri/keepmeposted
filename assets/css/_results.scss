@@ -1,0 +1,62 @@
+.search-row, .filter-row {
+		input, select {
+			margin: 0;
+		}
+		button {
+				width: auto;
+		}
+		p {
+			line-height: 35px;
+		}
+		select {
+			border: 1px solid $lighterColor;
+		}
+		.multiple-selects select {
+			margin: 0 0.5%;
+			&.double {
+				width: 48%;
+			}
+		}
+}
+
+.col-md-10.results-wrapper {
+	padding: 2.5% 5%;
+	@extend .profile-content-wrapper;
+}
+
+.col-md-10.results-nav-wrapper {
+		@extend .col-md-10.profile-nav-wrapper;
+}
+
+.user-item {
+    background-color: $bg-color;
+    border-radius: 5px;
+		cursor: pointer;
+		margin: 0 1%;
+    padding: 1.25%;
+		p {
+			margin: 2.5% 0;
+		}
+		h2 {
+			font-size: 13pt;
+			line-height: 15pt;
+		}
+    .user-img-wrapper {
+        border-radius: $border-radius;
+        height: 100px;
+				margin-left: 15px;
+        overflow: hidden;
+        position: relative;
+        width: 100px;
+        img {
+            left: -25%;
+            position: absolute;
+            top: 0;
+            width: 150%;
+        }
+    }
+}
+
+.tag-wrapper {
+		display: inline-block;
+}

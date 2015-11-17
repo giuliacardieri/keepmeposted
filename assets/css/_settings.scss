@@ -1,0 +1,76 @@
+.settings-group {
+    margin: 1.5% 0;
+}
+
+.chip-helper {
+    display: inline-block;
+    font-size: 10pt;
+    margin: 10px;
+    .glyphicon {
+        font-size: 8pt;
+    }
+    @media (min-width: 1024px) {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+#new-chip {
+    display: inline-block;
+    margin: 0;
+    width: 75%;
+}
+
+.new-chip {
+    display: inline-block;
+    min-width: 20%;
+    .button {
+        display: inline-block;
+        font-size: 9pt;
+        width: auto;
+    }
+}
+
+.chip-wrapper {
+    display: inline-block;
+    &.postcard-chip {
+      margin: 30px 0;
+    }
+    .chip{
+        background-color: $darkerColor;
+        border-radius: $border-radius;
+        display: inline-block;
+        font-size: 10pt;
+        margin: 0 2px;
+        padding: 8px;
+        white-space: nowrap;
+        &:first-child {
+            margin-left: 0;
+        }
+        span {
+            color: $textColor;
+            cursor: pointer;
+            font-size: 12pt;
+            margin: 5px -3px 5px 5px;
+            opacity: 0.5;
+        }
+    }
+}
+
+.settings-label {
+    left: 35px;
+    line-height: 35px;
+    top: 0;
+}
+
+.settings-group input[type="checkbox"] {
+    margin: 0;
+}
+
+.button-wrapper-settings {
+    margin: 2.5% 0;
+    .button.delete-account-btn {
+        width: 25%;
+    }
+}

@@ -1,22 +1,53 @@
 <?php
-class Collection extends CI_Controller {
-    
+class Collection extends MY_Controller{
+
     public function __construct()
     {
         parent::__construct();
         $this->load->model('postcards_model');
     }
-    
+
     public function index()
     {
-        $data['postcard'] = $this->postcards_model->get_postcards();
+        $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
+        $data['username'] = $header['username'];
+        $data['photo'] = $header['photo'];
+        $data['postcard'] = $this->postcards_model->get_postcards(array('user_id' => $this->session->userdata['user_id'], 'is_swap' => 0));
         $data['title'] = 'Collection';
-        
+        $data['active'] = 'collection';
+        $data['filter_postcards'] = $this->postcards_model->get_filter_postcards();
+        $data['filters'] = $this->postcards_model->get_filter_types();
+        $data['order'] = $this->postcards_model->get_order_types();
+
         $this->load->view('templates/head', $data);
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
-        $this->load->view('show_collection', $data);
+        $this->load->view('show_collection');
+        $this->load->view('templates/filters', $data);
+        $this->load->view('templates/show_postcards', $data);
+        $this->load->view('templates/back-btn');
         $this->load->view('templates/footer');
+    }
+
+    public function reload($type)
+    {
+      $filter_items = array(
+        'query' => NULL,
+        'tab' => NULL,
+        'type' => $type,
+        'filter' => $this->input->post('filter'),
+        'filter_type' => $this->input->post('filter-type'),
+        'order_by' => $this->input->post('order-by')
+      );
+
+      $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
+      $data['username'] = $header['username'];
+      $data['filter_postcards'] = $this->postcards_model->get_filter_postcards();
+      $data['filters'] = $this->postcards_model->get_filter_types();
+      $data['order'] = $this->postcards_model->get_order_types();
+      $postcards = $this->postcards_model->get_results($filter_items);
+      $data['postcard'] = $postcards;
+      return $this->load->view('templates/show_postcards', $data);
     }
 
 }

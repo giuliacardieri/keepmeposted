@@ -9,29 +9,41 @@ nav {
     position: fixed;
     padding: $header-height 0 0 0;
   }
-}
-
-.nav-stacked>li+li{
-  margin-top: 0;
-}
-
-.nav-pills>li>a{
-  border-bottom: 1px solid $nav-border-color;
-  border-radius: 0;
-  color: #BEC1C4;
-  display: block;
-  padding: 20px 15%;
-}
-
-.nav-pills>li>a:hover, .nav>li>a:focus{
-  background-color: $nav-hover-color;
-  color: $lighterColor;
-  outline: 0;
-}
-
-nav .glyphicon{    
-  font-size: 16pt;
-  padding-right: 10px;
+  .glyphicon {
+      font-size: 16pt;
+      padding-right: 10px;
+  }
+  .nav-stacked>li+li {
+    margin-top: 0;
+  }
+  .nav-pills {
+    &>li>a{
+      border-bottom: 1px solid $nav-border-color;
+      border-radius: 0;
+      color: $nav-text-color;
+      display: block;
+      padding: 20px 15%;
+      &.active {
+        background-color: $nav-active-color;
+        color: $lighterColor;
+        outline: 0;
+        @media (min-width: 1024px) {
+          &:hover, &:focus{
+            background-color: $nav-active-color;
+            color: $lighterColor;
+            outline: 0;
+          }
+        }
+      }
+      @media (min-width: 1024px) {
+        &:hover, &:focus{
+          background-color: $nav-bg-color;
+          color: $lighterColor;
+          outline: 0;
+        }
+      }
+    }
+  }
 }
 
 #menu-btn {

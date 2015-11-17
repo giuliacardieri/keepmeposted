@@ -1,0 +1,53 @@
+.postcards-wrapper {
+    padding: 2.5% 0;
+    .postcard {
+        margin: 1% 0;
+        &.col-md-3 {
+            width: auto;
+        }
+        .postcard-img-wrapper{
+            cursor: pointer;
+            position: relative;
+            img {
+              height: 160px;
+            }
+            .postcard-extra {
+              .icons {
+                position: absolute;
+                  @media (min-width: 1024px) {
+                    &:hover {
+                      opacity: 0.5;
+                    }
+                  }
+              }
+              .favorite-icon {
+                bottom: 5%;
+                right: 5%;
+              }
+              .glyphicon {
+                font-size: 16pt;
+              }
+              .img-overlay {
+                  background-color: #282828;
+                  height: 100%;
+                  opacity: 0.8;
+                  position: absolute;
+                  width: 100%;
+              }
+              .postcard-info {
+                  bottom: 5%;
+                  left: 5%;
+                  position: absolute;
+                  width: 100%;
+                  p {
+                      margin: 0;
+                  }
+                  .country-flag {
+                      height: auto;
+                      margin-left: 5px;
+                  }
+              }
+            }
+        }
+    }
+}
