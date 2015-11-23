@@ -109,7 +109,7 @@ class Postcard extends MY_Controller {
 
         $id = $this->postcards_model->insert_postcard($postcard);
 
-        for ($i=1; $i <= 5; $i++) {
+        for ($i=0; $i <= 5; $i++) {
           if ($this->input->post('chip-'.$i)) {
             $tagname = $this->input->post('chip-'.$i);
             $this->postcards_model->insert_tag(array('postcard_id' => $id, 'tagname' => $tagname));

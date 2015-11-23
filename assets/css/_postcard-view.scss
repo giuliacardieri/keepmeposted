@@ -38,6 +38,9 @@
         }
     }
     .postcard-text-container {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         h2 {
             font-size: 18pt;
             line-height: 20pt;

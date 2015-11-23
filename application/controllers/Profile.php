@@ -18,8 +18,10 @@ class Profile extends MY_Controller {
         $name =  $this->postcards_model->get_element('id, photo, username, fname, lname, join_date, country, email, twitter, facebook, postcrossing, postcrossing_forum', array(
             'id' => $id
         ),'user');
+        $name['username'] = $username;
 
         $data = $name;
+        $data['logged_user'] = $header['username'];
         $data['title'] = $username . "'s Profile";
         $data['join_date'] = date_format(date_create($name['join_date']), 'j M Y');
         $data['countries'] = $this->postcards_model->get_countries();
@@ -45,7 +47,7 @@ class Profile extends MY_Controller {
     public function load_postcards()
     {
         $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
-        $data['username'] = $header['username'];
+        $data['logged_user'] = $header['username'];
 
         $id = $this->uri->segment(3);
         $type = $this->uri->segment(4);

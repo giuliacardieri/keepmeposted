@@ -10,11 +10,11 @@
         <th>Type</th>
         <th>State</th>
         <th>Postcrossing ID</th>
-        <th>Is Swap?</th>
     </tr>
     <?php foreach ($postcard as $postcard): ?>
     <tr class="showPostcard" data-href="<?php echo site_url('postcard/'.$postcard['id']); ?>">
-        <td class="not-mobile"><span class="edit glyphicon glyphicon-search"></span>
+        <td>
+          <span class="edit glyphicon glyphicon-search"></span>
         </td>
         <td>
             <?php echo $postcard['description'] ?>
@@ -39,9 +39,6 @@
         </td>
         <td>
             <?php if ($postcard['is_swap'] == 1) { echo '-'; } else if ($postcard['postcrossing_id']){ echo $postcard['postcrossing_id']; } else { echo "Not Official"; } ?>
-        </td>
-        <td>
-            <?php echo ($postcard['is_swap'] == 1) ? 'Yes' : 'No'?>
         </td>
     </tr>
     <?php endforeach; ?>

@@ -15,11 +15,15 @@ class History extends MY_Controller {
         $data['postcard'] = $this->postcards_model->get_postcards(array('user_id' => $this->session->userdata['user_id']));
         $data['title'] = 'History';
         $data['active'] = 'history';
+        $data['filter_postcards'] = $this->postcards_model->get_filter_postcards();
+        $data['filters'] = $this->postcards_model->get_filter_types();
+        $data['order'] = $this->postcards_model->get_order_types();
 
         $this->load->view('templates/head', $data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('history');
+        $this->load->view('templates/filters_table', $data);
         $this->load->view('templates/show_postcards_table');
         $this->load->view('templates/footer');
     }

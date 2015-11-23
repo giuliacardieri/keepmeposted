@@ -31,7 +31,8 @@ class Login extends CI_Controller {
             'email' => $this->input->post('email'),
             'country' => $this->input->post('country'),
             'password' => $this->input->post('password'),
-            'join_date' => date('Y-m-d')
+            'join_date' => date('Y-m-d'),
+            'photo' => 'user.png'
         );
         
         $email = $this->login_model->validate_email($data);

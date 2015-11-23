@@ -7,7 +7,7 @@
                             <div class="postcard-info">
                                 <p><?php echo $postcard_item['description'] ?><img class="country-flag" src="<?php echo asset_url('images/' . $postcard_item['country'] . '.png'); ?>"></p>
                                 <p class="small">by
-                                    <?php if ($postcard_item['owner'] == $username) { echo 'You'; } else { echo $postcard_item['owner']; } ?></p>
+                                    <?php if ($postcard_item['owner'] == $logged_user) { echo 'You'; } else { echo $postcard_item['owner']; } ?></p>
                             </div>
                               <p class="icons favorite-icon remove <?php if (!$postcard_item['is_favorite']) echo 'hidden'; ?>" data-href="<?php echo site_url('favorites/remove_favorite/' . $postcard_item['id']) ?>"><span class="glyphicon glyphicon-star"></span></p>
                               <p class="icons favorite-icon add <?php if ($postcard_item['is_favorite']) echo 'hidden'; ?>" data-href="<?php echo site_url('favorites/add_favorite/' . $postcard_item['id']) ?>"><span class="glyphicon glyphicon-star-empty"></span></p>

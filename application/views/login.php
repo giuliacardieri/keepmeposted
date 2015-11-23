@@ -26,7 +26,7 @@
             <div class="row what-section">
                 <div class="col-lg-6 col-md-6 col-what-section">
                     <div class="text-what-section">
-                        <h3 class="index">Organize your collection</h3>
+                        <h3>Organize your collection</h3>
                         <p>Keep Me Posted allows you to organize your postcards using categories and tags.</p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-what-section">
                     <div class="text-what-section">
-                        <h3 class="index">Find postcards you like</h3>
+                        <h3>Find postcards you like</h3>
                         <p>Check recommendations or use the search tool to find your new favourite postcards!</p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             <div class="row what-section">
                 <div class="col-lg-6 col-md-6 col-what-section">
                     <div class="text-what-section">
-                        <h3 class="index">Share your collection</h3>
+                        <h3>Share your collection</h3>
                         <p>Let your friends know about your awesome postcards using Facebook or Twitter.</p>
                     </div>
                 </div>

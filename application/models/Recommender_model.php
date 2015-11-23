@@ -126,6 +126,7 @@ class Recommender_model extends CI_Model
           if (!$postcard['is_favorite'])
             array_push($valid_postcard, $postcard);
         }
+        $valid_postcard = array_values(array_unique($valid_postcard, SORT_REGULAR));
         return $valid_postcard;
     }
 

@@ -18,7 +18,7 @@
             <div class="postcard-text-container show-postcard col-md-5">
                 <h2><?php echo $postcard['description'] ?></h2>
                   <p><span class="glyphicon glyphicon-user"></span>By
-                    <?php if (is_null($postcard['owner'])) echo 'You'; else echo "<a href='" . site_url('profile/view/' . $postcard['owner']) . "'>" . $postcard['owner'] . "</a>";?></p>
+                    <?php if (is_null($postcard['owner'])) echo 'You'; else echo "<a href='" . site_url('profile/' . $postcard['owner']) . "'>" . $postcard['owner'] . "</a>";?></p>
                 <p class="flag-sibling">
                     <span class="glyphicon glyphicon-map-marker"></span>
                     <?php if ($postcard['is_swap'] == 0) { echo 'Sent by ' . $postcard['sender']. ' - '; } ?>

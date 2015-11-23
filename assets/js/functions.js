@@ -285,7 +285,7 @@ $(function() {
         $(this).find(".postcard-extra").toggleClass("hidden");
     });
 
-    $(".profile-content-wrapper .postcard, .results-inner-wrapper .postcard").on('mouseenter mouseleave', function(){
+    $(".profile-content-wrapper").on('mouseenter mouseleave', '.postcards-wrapper-smaller .postcard', function(){
         $(this).find(".postcard-extra").toggleClass("hidden");
     });
 

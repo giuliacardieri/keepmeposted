@@ -34,7 +34,7 @@
                 <p class="field-error sender hidden"></p>
             </div>
             <div class="form-field col-md-6">
-                <label class="date-label" for="date">Date received</label>
+                <label class="datepicker-add-label" for="date">Date received</label>
                 <input type="text" id="datepicker-add" class="received-attr" name="date" data-parsley-errors-container=".date" data-parsley-required="true">
                 <p class="field-error date hidden"></p>
             </div>

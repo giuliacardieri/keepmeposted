@@ -40,7 +40,7 @@
                                     <select class="error-tooltip" data-toggle="tooltip" data-placement="right" title="Country" id="country" name="country" data-parsley-ui-enabled="false" required>
                                         <option value="">Country</option>
                                         <?php foreach ($countries as $country): ?>
-                                        <option value="<?php echo $country['name']; ?>">
+                                        <option value="<?php echo $country['id']; ?>">
                                             <?php echo $country['name']; ?>
                                         </option>
                                         <?php endforeach; ?>
