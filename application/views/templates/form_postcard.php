@@ -11,7 +11,7 @@
         <div class="row">
             <div class="form-field col-md-6">
                 <label class="photo-label" for="photo">Image</label>
-                <input type="file" id="photo" name="photo" value="" data-parsley-errors-container=".photo">
+                <input type="file" id="photo" name="photo" value="" accept="image/*" data-parsley-errors-container=".photo">
                 <p class="photo field-error hidden">.png/.jpg/.jpeg</p>
             </div>
 
@@ -107,7 +107,7 @@
         <div class="row">
             <div class="col-md-12 button-wrapper">
                 <input type="reset" value="Reset">
-                <input name="submit2" class="add-submit" type="submit" value="Send">
+                <input name="submit2" class="add-submit" type="submit" value="Save">
             </div>
         </div>
     </form>

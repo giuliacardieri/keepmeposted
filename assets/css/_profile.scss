@@ -1,146 +1,182 @@
 .profile-img-wrapper {
-		border-radius: ($border-radius*100);
-		height: 260px;
+	border-radius: ($border-radius*100);
+	height: 260px;
+	overflow: hidden;
+	position: relative;
+	@media (min-width: 992px) {
 		margin: auto;
-		overflow: hidden;
-		position: relative;
-		img {
-				left: -25%;
-				position: absolute;
-				top: 0;
-				width: 150%;
+	}
+	@media (max-width: 400px) {
+		height: 100px;
+	}
+	@media (min-width: 401px) and (max-width: 499px) {
+		height: 125px;
+	}
+	@media (min-width: 500px) and (max-width: 619px) {
+		height: 150px;
+	}
+	@media (min-width: 620px) and (max-width: 850px) {
+		height: 200px;
+	}
+	@media (min-width: 992px) and (max-width: 1200px) {
+		height: 180px;
+	}
+	@media (min-width: 1201px) and (max-width: 1400px) {
+		height: 220px;
+	}
+	img {
+		left: -25%;
+		position: absolute;
+		top: 0;
+		width: 150%;
+	}
+	.profile-img-overlay {
+		background-color: $nav-bg-color;
+		height: 100%;
+		position: absolute;
+		width: 100%;
+		opacity: 0.75;
+		left: 0;
+	}
+	.profile-img-edit {
+		bottom: 0;
+		cursor: pointer;
+		height: 10%;
+		left: 0;
+		margin: auto;
+		position: absolute;
+		right: 0;
+		text-align: center;
+		top: 0;
+		width: 100%;
+		.glyphicon {
+			font-size: 75pt;
+			margin: 0;
 		}
-		.profile-img-overlay {
-				background-color: $nav-bg-color;
-				height: 100%;
-				position: absolute;
-				width: 100%;
-				opacity: 0.75;
-				left: 0;
+		input#photo {
+			border: 0;
+			margin: 0 auto;
+			max-width: 75%;
+			padding: 0;
 		}
-		.profile-img-edit {
-				bottom: 0;
-				cursor: pointer;
-				height: 10%;
-				left: 0;
-				margin: auto;
-				position: absolute;
-				right: 0;
-				text-align: center;
-				top: 0;
-				width: 100%;
-				.glyphicon {
-					font-size: 75pt;
-					margin: 0;
-				}
-				input#photo {
-					border: 0;
-					margin: 0 auto;
-					max-width: 75%;
-					padding: 0;
-				}
-		}
+	}
 }
 
 .profile-info-wrapper, .profile-edit-wrapper{
-		padding: 0 5%;
-		.profile-info-text {
-				h2 {
-						font-size: 20pt;
-						line-height: 22pt;
-				}
-				p {
-						margin: 2.5% 0;
-						&.flag-sibling {
-								margin: -2.5% 0;
-						}
-				}
+	padding: 0 5%;
+	.profile-info-text {
+		h2 {
+			font-size: 20pt;
+			line-height: 22pt;
 		}
-		.profile-info-contact {
-      margin: 5% 0;
-				h3 {
-            margin: 2.5% 0
+		p {
+			margin: 2.5% 0;
+			&.flag-sibling {
+				margin: -2.5% 0;
+			}
+		}
+	}
+	.profile-info-contact {
+      	margin: 5% 0;
+		h3 {
+        	margin: 2.5% 0
         }
-				.contact-group {
-						position: relative;
-						input {
-								margin: 0;
-						}
-						label {
-								left: 20px;
-								line-height: 35px;
-								top: 0;
-						}
-				}
-		}
-		.edit-field {
-				padding: 0 1%;
-				#fname, #lname {
-						font-size: 18pt;
-						margin-top: 0;
-				}
-				input, select {
-						margin: 2.5% 0;
-				}
-		}
-		p.edit-field {
-				line-height: 41px;
+		.contact-group {
+			position: relative;
+			input {
 				margin: 0;
+			}
+			label {
+				left: 20px;
+				line-height: 35px;
+				top: 0;
+			}
 		}
+	}
+	.edit-field {
+		padding: 0 1%;
+		#fname, #lname {
+			font-size: 18pt;
+			margin-top: 0;
+		}
+		input, select {
+			margin: 2.5% 0;
+		}
+	}
+	p.edit-field {
+		line-height: 41px;
+		margin: 0;
+	}
 }
 
 .btn-profile-wrapper {
-		.button {
-				width: 48%;
-				&:first-child {
-						margin-right: 5px;
-				}
+	margin-top: 2.5%;
+	.button {
+		width: 48%;
+		&:first-child {
+			margin-right: 5px;
 		}
+	}
 }
 
 .col-md-10.profile-nav-wrapper {
-		margin-top: 0;
-		padding: 0 15px;
-		.nav-tabs {
-				background-color: $bg-color;
+	margin-top: 0;
+	padding: 0 15px;
+	.nav-tabs {
+		background-color: $bg-color;
+		border: 0;
+		li {
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			a {
 				border: 0;
-				li {
-						margin: 0;
-						padding: 0;
-						text-align: center;
-						a {
-								border: 0;
-								border-bottom: 2px solid $bg-color;
-								color: $textColor;
-								&.active {
-										background-color: $bg-color;
-										border-bottom-color: $lighterColor;
-										&:hover, &:focus	{
-												border-bottom-color: $lighterColor;
-										}
-								}
-								&:hover, &:focus	{
-										background-color: $bg-color;
-								}
-						}
+				border-bottom: 2px solid $bg-color;
+				color: $textColor;
+				&.active {
+					background-color: $bg-color;
+					border-bottom-color: $lighterColor;
+					&:hover, &:focus	{
+						border-bottom-color: $lighterColor;
+					}
 				}
+				&:hover, &:focus	{
+					background-color: $bg-color;
+				}
+			}
 		}
+	}
 }
 
 .col-md-10.profile-content-wrapper {
-		@extend .main;
-		background-color: $nav-active-color;
-		margin-top: 0;
-		padding-top: 2.5%;
-		.postcards-wrapper-profile {
-				padding: 0;
-		}
+	@extend .main;
+	background-color: $nav-active-color;
+	margin-top: 0;
+	padding-top: 2.5%;
+	.postcards-wrapper-profile {
+			padding: 0;
+	}
 }
 
 
 .postcards-wrapper-smaller {
-		@extend .postcards-wrapper;
-		.postcard.col-md-3 {
-				padding: 0 7.5px;
-		}
+	@extend .postcards-wrapper;
+	.postcard.col-md-3 {
+		padding: 0 7.5px;
+	}
+}
+
+.icon {
+	margin-right: 5px;
+}
+
+.private-label {
+	left: 22%;
+	top: 30%;
+	@media (max-width: 991px) and (min-width: 768px) {
+		left: 15%;
+	}
+	@media (max-width: 767px) {
+		left: 30%;
+	}
 }

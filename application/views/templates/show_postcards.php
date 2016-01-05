@@ -23,5 +23,7 @@
     <?php endif; ?>
   <?php endforeach; ?>
 <?php else: ?>
-<p class="col-md-12">No postcards were found.</p>
+  <div class="row">
+    <p class="col-md-12">No postcards were found.</p>
+  </div>
 <?php endif; ?>

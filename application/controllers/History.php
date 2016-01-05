@@ -10,21 +10,38 @@ class History extends MY_Controller {
     public function index()
     {
         $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
+        $data['fname'] = $this->postcards_model->get_element('fname', array('id' => $this->session->userdata['user_id']),'user')['fname'];
         $data['username'] = $header['username'];
         $data['photo'] = $header['photo'];
-        $data['postcard'] = $this->postcards_model->get_postcards(array('user_id' => $this->session->userdata['user_id']));
+        $data['postcard'] = $this->postcards_model->get_postcards(array(
+            'order_element' => 'date_added',
+            'order_by' => 'DESC', 
+            'query' => array(
+                'user_id' => $this->session->userdata['user_id']
+            ,)
+        ));
         $data['title'] = 'History';
         $data['active'] = 'history';
-        $data['filter_postcards'] = $this->postcards_model->get_filter_postcards();
-        $data['filters'] = $this->postcards_model->get_filter_types();
-        $data['order'] = $this->postcards_model->get_order_types();
 
         $this->load->view('templates/head', $data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('history');
-        $this->load->view('templates/filters_table', $data);
-        $this->load->view('templates/show_postcards_table');
+        $this->load->view('templates/show_postcards_table', $data);
+        $this->load->view('templates/back-btn');
         $this->load->view('templates/footer');
+    }
+
+    public function reload_history($order_element, $order_by)
+    {
+        $data['postcard'] = $this->postcards_model->get_postcards(array(
+            'order_element' => $order_element,
+            'order_by' => $order_by, 
+            'query' => array(
+                'user_id' => $this->session->userdata['user_id']
+            ,)
+        ));
+
+        $this->load->view('templates/show_postcards_table', $data);
     }
 }

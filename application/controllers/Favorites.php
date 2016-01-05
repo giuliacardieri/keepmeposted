@@ -10,8 +10,9 @@ class Favorites extends MY_Controller {
     public function index()
     {
         $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
+        $data['fname'] = $this->postcards_model->get_element('fname', array('id' => $this->session->userdata['user_id']),'user')['fname'];
         $data['username'] = $header['username'];
-        $data['photo'] = $header['photo'];
+        $data['photo'] = $header['photo'];        
         $data['postcard'] = $this->postcards_model->get_favorites($this->session->userdata['user_id']);
         $data['title'] = 'Favorites';
         $data['type'] = 'favorites';
@@ -36,7 +37,15 @@ class Favorites extends MY_Controller {
             'postcard_id' => $id,
             'user_id' =>$this->session->userdata['user_id'],
         );
-        $this->postcards_model->add_favorite($data);
+        $this->postcards_model->add_favorite($data); 
+
+        $data = $this->postcards_model->get_user_info();
+        $this->load->library('email');
+        $this->email->from('giulia.cardieri@gmail.com', 'Keep Me Posted');
+        $this->email->to('giulia.cardieri@gmail.com'); 
+        $this->email->subject('Someone favorited your postcard!');
+        $this->email->message('Hi ' . $data['fname'] . ', \n Someone favorited your postcard!');  
+        $this->email->send();
     }
 
     public function remove_favorite($id)
@@ -47,5 +56,4 @@ class Favorites extends MY_Controller {
         );
         $this->postcards_model->remove_favorite($data);
     }
-
 }

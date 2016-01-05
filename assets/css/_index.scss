@@ -15,6 +15,13 @@ header.index {
             font-size: 20pt;
             .logo {
                 max-width: 36px;
+                @media (max-width: 767px) {
+                    max-width: 20px;
+                }
+            }
+            @media (max-width: 767px) {
+                font-size: 14pt;
+                line-height: 16pt;
             }
         }
     }
@@ -24,6 +31,9 @@ header.index {
     button {
         font-size: 13pt;
         width: 25%;
+        @media (max-width: 767px) {
+            width: auto;
+        }
     }
 }
 .photo-main {
@@ -33,6 +43,10 @@ header.index {
         font-size: 24pt;
         line-height: 26pt;
         margin-bottom: 15px;
+        @media (max-width: 767px) {
+            font-size: 18pt;
+            line-height: 20pt;
+        }
     }
     &::before {
         display: none;
@@ -57,6 +71,7 @@ header.index {
     top: 50%;
     width: 100%;
 }
+
 .color-overlay {
     background-color: $darkerColor;
     height: 100%;
@@ -64,9 +79,14 @@ header.index {
     position: absolute;
     width: 100%;
 }
+
 .what-section {
-    margin: 5% 0;
+    margin: 5% -15px;
+    div img{
+        margin: auto;
+    }
 }
+
 .text-what-section {
     bottom: 0;
     height: 40%;
@@ -77,16 +97,25 @@ header.index {
     right: 0;
     top: 0;
 }
+
 .col-what-section {
     height: 250px;
+    @media (max-width: 991px) {
+        height: 150px;
+    }
 }
+
 .button.start {
     font-size: 15pt;
     padding: 5px 0;
     width: 25%;
+    @media (max-width: 767px) {
+        padding: 5px 10px;
+        width: auto;
+    }
 }
-/* signup form */
 
+/* signup form */
 .modal-content {
     background-color: $textColor;
 }
@@ -146,6 +175,7 @@ header.index {
 
 @include placeholder('input', $textColor2);
 @include placeholder('.field-error', $errorColor);
+@include placeholder('#search-field-mobile', $textColor);
 
 .label-signup {
     color: $textColor2;
@@ -166,4 +196,8 @@ header.index {
 
 .tooltip-inner {
     background-color: $errorColor;
+}
+
+main.index {
+    margin-top: 5%;
 }

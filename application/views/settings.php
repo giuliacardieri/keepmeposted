@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="form-field col-md-6">
                         <label class="label-selected username-label" for="username">Username</label>
-                        <input type="text" id="username" name="username" value="<?php echo $username; ?>" required data-parsley-length="[6, 20]" data-parsley-errors-container=".username">
+                        <input type="text" id="username" name="username" value="<?php echo $username; ?>" required data-parsley-length="[5, 20]" data-parsley-errors-container=".username">
                         <p class="username field-error hidden"></p>
                     </div>
 
@@ -22,13 +22,13 @@
 
                     <div class="form-field col-md-6">
                         <label class="label-selected password-label" for="password">Password</label>
-                        <input type="password" id="password" value="<?php echo $password; ?>" name="password" data-parsley-errors-container=".password" required>
+                        <input type="password" id="password" name="password" data-parsley-errors-container=".password" data-parsley-length="[8, 50]">
                         <p class="field-error password hidden"></p>
                     </div>
 
                     <div class="form-field col-md-6">
                         <label class="label-selected password-label" for="password">Confirm Password</label>
-                        <input type="password" id="password-confirm" value="<?php echo $password; ?>" name="password-confirm" data-parsley-errors-container=".password-confirm" required data-parsley-equalto="#password">
+                        <input type="password" id="password-confirm" name="password-confirm" data-parsley-errors-container=".password-confirm" data-parsley-length="[8, 50]" data-parsley-equalto="#password">
                         <p class="field-error password-confirm hidden"></p>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
 
                     <div class="form-field col-md-6">
                         <label class="label-selected forum-label" for="forum">Postcrossing Forum Profile</label>
-                        <input type="text" id="forum" value="<?php echo $forum; ?>" name="forum" data-parsley-errors-container=".forum">
+                        <input type="text" id="forum" value="<?php echo $forum; ?>" name="postcrossing_forum" data-parsley-errors-container=".forum">
                         <p class="field-error forum hidden"></p>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+       <!--  <div class="row">
             <div class="settings-group col-md-12">
                 <h4>Sharing</h4>
                 <p>Share your new postcards and favorited postcards on social networks.</p>
@@ -112,8 +112,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div> -->
+<!--         <div class="row">
             <div class="settings-group col-md-12">
                 <h4>Email Notifications</h4>
                 <p>Receive emails when someone favorite one of your postcards.</p>
@@ -124,12 +124,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-md-12 button-wrapper-settings">
                 <div class="row">
                     <div class="col-md-6 button-wrapper-delete">
-                        <button class="button delete-account-btn">Delete Account</button>
+                        <button class="button delete-account-btn" data-toggle="modal" data-target="#deleteModal">Delete Account</button>
                     </div>
                     <div class="col-md-6 button-wrapper">
                         <input name="submit2" class="settings-submit" type="submit" value="Save">

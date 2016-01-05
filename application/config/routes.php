@@ -50,18 +50,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['results/(:any)/(:any)'] = 'search/results/$1/$2';
+$route['tags/(:any)'] = 'tags/index/$1';
+$route['stats/get_countries/(:any)'] = 'stats/get_countries/$1';
+$route['stats'] = 'stats';
+$route['history/reload_history/(:any)/(:any)'] = 'history/reload_history/$1/$2';
+$route['results/(:any)'] = 'search/results/$1';
+$route['categories/(:any)'] = 'categories/index/$1';
 $route['profile/(:any)'] = 'profile/index/$1';
+$route['profile/reload/(:any)/(:any)'] = 'profile/reload/$1/$2';
+$route['profile/load_postcards/(:any)/(:any)'] = 'profile/load_postcards/$1/$2';
+$route['profile/load_stats/(:any)'] = 'profile/load_stats/$1';
 $route['profile/load_profile'] = 'profile/load_profile';
 $route['profile/update_profile'] = 'profile/update_profile';
 $route['profile'] = 'profile';
 $route['logout'] = 'login/logout';
+$route['login/(:any)'] = 'login/index/$1';
+$route['login/login'] = 'login/login';
+$route['login/signup'] = 'login/signup';
 $route['login'] = 'login';
 $route['history'] = 'history';
+$route['collection/reload/(:any)'] = 'collection/reload/$1';
 $route['collection'] = 'collection';
 $route['favorites/add_favorite/(:any)/(:any)'] = 'favorites/add_favorite/$1';
 $route['favorites/remove_favorite/(:any)/(:any)'] = 'favorites/remove_favorite/$1';
 $route['favorites'] = 'favorites';
+$route['search/load_results/(:any)/(:any)'] = 'search/load_results/$1/$2';
 $route['search'] = 'search/search';
 $route['swap'] = 'swap';
 $route['settings'] = 'settings';

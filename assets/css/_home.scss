@@ -10,7 +10,46 @@
     background-color: $nav-active-color;
     margin-top: 0;
     padding: 4% 5%;
-    &:last-child {
+    &.personal {
         background-color: $bg-color;
+    }
+}
+
+.btn-wrapper {
+    text-align: right;
+}
+
+.popular-postcard-wrapper {
+    @extend .postcards-wrapper;
+    padding-bottom: 0;
+    .postcard {
+        margin: 0;
+        .postcard-img-wrapper{
+            img {
+                border-radius: 0;
+                @media (min-width: 993px) { 
+                  height: auto;
+                }
+            }
+        }
+    }
+    .stats-square {
+        margin-top: 0;
+    }
+}
+
+.fav-category-btn {
+    width: auto;
+}
+
+.glyphicon.glyphicon-pencil {
+    cursor: pointer;
+    margin: 0 0 0 5px;
+}
+
+.favorite-categories-wrapper {
+    margin-top: 2.5%;
+    h2 {
+        margin: 1.25% 0;
     }
 }

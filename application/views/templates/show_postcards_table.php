@@ -1,21 +1,17 @@
 <div class="row">
   <table class="table">
     <tr>
-        <th></th>
-        <th>Description</th>
-        <th>Sender</th>
-        <th>Country</th>
-        <th>Date</th>
-        <th>Category</th>
-        <th>Type</th>
-        <th>State</th>
-        <th>Postcrossing ID</th>
+        <th class="default" data-href="<?php echo site_url('history/reload_history/description'); ?>">Description<span class="glyphicon glyphicon-triangle-top"></span><span class="glyphicon glyphicon-triangle-bottom"></span></th>
+        <th class="default" data-href="<?php echo site_url('history/reload_history/sender'); ?>">Sender<span class="glyphicon glyphicon-triangle-top"></span><span class="glyphicon glyphicon-triangle-bottom"></span></th>
+        <th class="default" data-href="<?php echo site_url('history/reload_history/country'); ?>">Country<span class="glyphicon glyphicon-triangle-top"></span><span class="glyphicon glyphicon-triangle-bottom"></span></th>
+        <th class="default" data-href="<?php echo site_url('history/reload_history/date_received'); ?>">Date<span class="glyphicon glyphicon-triangle-top"></span><span class="glyphicon glyphicon-triangle-bottom"></span></th>
+        <th class="default" data-href="<?php echo site_url('history/reload_history/category'); ?>">Category<span class="glyphicon glyphicon-triangle-top"></span><span class="glyphicon glyphicon-triangle-bottom"></span></th>
+        <th class="default" data-href="<?php echo site_url('history/reload_history/type'); ?>">Type<span class="glyphicon glyphicon-triangle-top"></span><span class="glyphicon glyphicon-triangle-bottom"></span></th>
+        <th class="default" data-href="<?php echo site_url('history/reload_history/state'); ?>">State<span class="glyphicon glyphicon-triangle-top"></span><span class="glyphicon glyphicon-triangle-bottom"></span></th>
+        <th class="default" data-href="<?php echo site_url('history/reload_history/postcrossing_id'); ?>">Postcrossing ID<span class="glyphicon glyphicon-triangle-top"></span><span class="glyphicon glyphicon-triangle-bottom"></span></th>
     </tr>
     <?php foreach ($postcard as $postcard): ?>
     <tr class="showPostcard" data-href="<?php echo site_url('postcard/'.$postcard['id']); ?>">
-        <td>
-          <span class="edit glyphicon glyphicon-search"></span>
-        </td>
         <td>
             <?php echo $postcard['description'] ?>
         </td>
@@ -43,7 +39,4 @@
     </tr>
     <?php endforeach; ?>
 </table>
-</div>
-<div class="row">
-    <button class="button back">Back</button>
 </div>

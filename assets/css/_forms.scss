@@ -24,6 +24,9 @@ select {
             margin-bottom: 10px;
         }
     }
+    @media (max-width: 991px) {
+        padding: 0 2.5%;
+    }
 }
 
 label {
@@ -53,6 +56,15 @@ input[type="submit"],
     margin: 0;
     padding: 5px 10px;
     width: 10%;
+    &:active, &:focus, &:hover {
+        background-color: $darkerColor;
+    }
+    &.btn-ignore {
+        width: auto;
+    }
+    @media (max-width: 992px) {
+        width: auto;
+    }
 }
 
 .select-postcard-option {
@@ -64,6 +76,10 @@ input[type="submit"],
         margin: 15px -2px;
         padding: 5px;
         width: 15%;
+        @media (max-width: 991px) {
+            padding: 10px;
+            width: auto;
+        }
         &.received-btn {
             border-radius: $border-radius 0 0 $border-radius;
         }
@@ -81,6 +97,9 @@ input[type="submit"],
 
 .button-wrapper {
     text-align: right;
+    @media (max-width: 991px) {
+        margin-top: 7.5%;
+    }
 }
 
 input:-webkit-autofill,

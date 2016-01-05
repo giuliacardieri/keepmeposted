@@ -16,6 +16,7 @@
     <script type="text/javascript" src="<?php echo asset_url('js/jquery-ui.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset_url('js/jquery.form.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset_url('js/bootstrap.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo asset_url('js/Chart.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset_url('js/parsley.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset_url('js/functions.js'); ?>"></script>
 </head>

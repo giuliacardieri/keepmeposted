@@ -9,10 +9,7 @@ class Settings extends MY_Controller {
 
     public function index()
     {
-        $name =  $this->postcards_model->get_element('fname, lname, email, password, username, share_twitter, share_facebook, twitter, facebook, favorite_email, postcrossing, postcrossing_forum', array(
-            'id' => $this->session->userdata['user_id']
-        ),'user');
-
+        $name =  $this->postcards_model->get_user_info($this->session->userdata['user_id']);
         $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
         $data = $name;
         $data['category'] = $this->postcards_model->get_favorite_categories();
@@ -21,12 +18,11 @@ class Settings extends MY_Controller {
         $data['username'] = $header['username'];
         $data['photo'] = $header['photo'];
         $data['forum'] = $name['postcrossing_forum'];
-        $data['share_twitter'] =  is_null($name['share_twitter']) ? '0' : $name['share_twitter'];
-        $data['share_facebook'] = is_null($name['share_facebook']) ? '0' : $name['share_facebook'];
-        $data['favorite_email'] = is_null($name['favorite_email']) ? '0' : $name['favorite_email'];
         $data['active'] = '';
 
         $this->load->view('templates/head', $data);
+        $this->load->view('templates/modal_delete_account', $data);
+        $this->load->view('templates/modal_unsaved', $data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('settings', $data);
@@ -52,17 +48,25 @@ class Settings extends MY_Controller {
         $data = array(
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
-            'password' => $this->input->post('password'),
-            'postcrossing' => $this->input->post('postcrossing'),
-            'postcrossing_forum' => $this->input->post('forum'),
-            'twitter' => $this->input->post('twitter'),
-            'facebook' => $this->input->post('facebook'),
-            'share_twitter' => is_null($this->input->post('share_twitter')) ? '0' : '1',
-            'share_facebook' => is_null($this->input->post('share_facebook')) ? '0' : '1',
-            'favorite_email' => is_null($this->input->post('favorite-email')) ? '0' : '1',
+            'facebook' => empty($this->input->post('facebook')) ? NULL : $this->input->post('facebook'),
+            'twitter' => empty($this->input->post('twitter')) ? NULL : $this->input->post('twitter'),
+            'postcrossing' => empty($this->input->post('postcrossing')) ? NULL : $this->input->post('postcrossing'),
+            'postcrossing_forum' => empty($this->input->post('postcrossing_forum')) ? NULL : $this->input->post('postcrossing_forum'),
         );
+
+        if (!empty($this->input->post('password')))
+            $data['password'] = sha1($this->input->post('password'));
+
         $this->postcards_model->update_settings($data);
         redirect('settings/index');
+
+    }
+
+    public function delete()
+    {
+        $this->postcards_model->delete_account();
+        $this->session->sess_destroy();
+        redirect(base_url());
 
     }
 }

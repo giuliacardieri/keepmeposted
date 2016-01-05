@@ -7,10 +7,16 @@ class Login extends CI_Controller {
         $this->load->model('postcards_model');
     }
     
-    public function index()
+    public function index($error=NULL)
     {
+        $data['error'] = NULL;
+        switch ($error) {
+            case 1: $data['error'] = "Email already used in an account"; break;
+            case 2: $data['error'] = "Username already in use"; break;
+            case 3: $data['error'] = "Email and username already used in an account"; break;
+            case 4: $data['error'] = "Username/password does not match!"; break;
+        }
         $data['title'] = 'Login/Signup';
-        $data['error'] = '';
         $data['countries'] = $this->postcards_model->get_countries();
         
         $logged = $this->session->userdata("logged");
@@ -30,7 +36,7 @@ class Login extends CI_Controller {
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
             'country' => $this->input->post('country'),
-            'password' => $this->input->post('password'),
+            'password' => sha1($this->input->post('password')),
             'join_date' => date('Y-m-d'),
             'photo' => 'user.png'
         );
@@ -51,22 +57,22 @@ class Login extends CI_Controller {
             redirect(base_url());
             
         } else{
-            $data['error'] = '';
-            if (!$email){
-                $data['error'] = "Email already used in an account";
-            }
-            if (!$username_valid){
-                $data['error'] = $data['error'] . ' ' . "Username already in use";
-            }
+            $error = 0;
+            if (!$email)
+                $error = 1;
+            if (!$username_valid)
+                $error = 2;
+            if (!$username_valid && !$email)
+                $error = 3;
         }
-        $this->load->view("login", $data);
+        redirect('login/index/' . $error);
     } 
     
     public function login()
     {   
         $data = array(
             'username' => $this->input->post('username'), 
-            'password' => $this->input->post('password')
+            'password' => sha1($this->input->post('password'))
         );
         $valid = $this->login_model->validate_login($data);
         
@@ -79,11 +85,10 @@ class Login extends CI_Controller {
             
             $this->session->set_userdata($data);
             redirect(base_url());
-            
         } else {
-			$data['error'] = "Username/password combination does not match!";
-			$this->load->view("login", $data);
+			$error = 4;
 		}
+        redirect('login/' . $error);
     }
     
 	public function logout()

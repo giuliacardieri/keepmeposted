@@ -14,6 +14,7 @@ class Postcard extends MY_Controller {
           $id = $this->uri->segment(3);
         $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
         $data['username'] = $header['username'];
+        $data['fname'] = $this->postcards_model->get_element('fname', array('id' => $this->session->userdata['user_id']),'user')['fname'];
         $data['photo'] = $header['photo'];
         $data['postcard'] = $this->postcards_model->get_postcard($id);
         $data['postcard']['owner'] = $this->postcards_model->get_owner($data['postcard']['user_id']);
@@ -55,6 +56,7 @@ class Postcard extends MY_Controller {
     {
         $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
         $data['username'] = $header['username'];
+        $data['fname'] = $this->postcards_model->get_element('fname', array('id' => $this->session->userdata['user_id']),'user')['fname'];
         $data['photo'] = $header['photo'];
         $data['title'] = 'Add Postcard';
         $data['types'] = $this->postcards_model->get_types();
@@ -78,7 +80,7 @@ class Postcard extends MY_Controller {
                   'upload_url'      => base_url()."assets/postcards/",
                   'allowed_types'   => "gif|jpg|png|jpeg",
                   'overwrite'       => TRUE,
-                  'max_size'        => "1000KB",
+                  'max_size'        => "1500KB",
                   'encrypt_name'    => TRUE
             );
 
@@ -126,7 +128,7 @@ class Postcard extends MY_Controller {
                 'upload_url'      => base_url()."assets/users/",
                 'allowed_types'   => "gif|jpg|png|jpeg",
                 'overwrite'       => TRUE,
-                'max_size'        => "1000KB",
+                'max_size'        => "1500KB",
                 'encrypt_name'    => TRUE
           );
 

@@ -5,6 +5,7 @@ class Profile extends MY_Controller {
     {
         parent::__construct();
         $this->load->model('postcards_model');
+        $this->load->model('stats_model');
     }
 
 		public function index($username=NULL)
@@ -15,9 +16,7 @@ class Profile extends MY_Controller {
         $id = $this->postcards_model->get_element('id', array(
             'username' => $username
         ),'user')['id'];
-        $name =  $this->postcards_model->get_element('id, photo, username, fname, lname, join_date, country, email, twitter, facebook, postcrossing, postcrossing_forum', array(
-            'id' => $id
-        ),'user');
+        $name =  $this->postcards_model->get_user_info($id);
         $name['username'] = $username;
 
         $data = $name;
@@ -26,7 +25,14 @@ class Profile extends MY_Controller {
         $data['join_date'] = date_format(date_create($name['join_date']), 'j M Y');
         $data['countries'] = $this->postcards_model->get_countries();
         $data['country_name'] = $this->postcards_model->get_element('name', array('id' => $data['country']), 'countries')['name'];
-        $data['postcard'] = $this->postcards_model->get_postcards(array('user_id' => $id, 'is_swap' => 0));
+        $data['postcard'] = $this->postcards_model->get_postcards(array(
+            'order_element' => 'date_added',
+            'order_by' => 'DESC', 
+            'query' => array(
+                'user_id' => $id,
+                'is_swap' => 0
+            )
+        ));
         $current_username =  $this->postcards_model->get_element('username', array(
             'id' => $this->session->userdata['user_id']
         ),'user')['username'];
@@ -44,22 +50,34 @@ class Profile extends MY_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function load_postcards()
+    public function load_postcards($id, $type)
     {
         $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
         $data['logged_user'] = $header['username'];
 
-        $id = $this->uri->segment(3);
-        $type = $this->uri->segment(4);
         switch ($type) {
             case 1:
-                $data['postcard'] = $this->postcards_model->get_postcards(array('user_id' => $id, 'is_swap' => 0));
+                $data['postcard'] = $this->postcards_model->get_postcards(array(
+                    'order_element' => 'date_added',
+                    'order_by' => 'DESC', 
+                    'query' => array(
+                        'user_id' => $id,
+                        'is_swap' => 0,
+                    )
+                ));
                 break;
             case 2:
                 $data['postcard'] = $this->postcards_model->get_favorites($id);
                 break;
             case 3:
-                $data['postcard'] =  $this->postcards_model->get_postcards(array('user_id' => $id, 'is_swap' => 1));
+                $data['postcard'] = $this->postcards_model->get_postcards(array(
+                    'order_element' => 'date_added',
+                    'order_by' => 'DESC', 
+                    'query' => array(
+                        'user_id' => $id,
+                        'is_swap' => 1,
+                    )
+                ));
                 break;
         }
         return $this->load->view('templates/show_postcards_profile', $data);
@@ -86,49 +104,74 @@ class Profile extends MY_Controller {
               $file_name = $old_file;
               $upload_data = $this->upload->data();
           } else {
-              unlink($config['upload_path'] . $old_file);
+              if ($old_file != 'user.png')
+                unlink($config['upload_path'] . $old_file);
               $upload_data = $this->upload->data();
               $file_name = $upload_data['file_name'];
           }
+
           $profile = array(
               'country' => $this->input->post('country'),
               'fname' => $this->input->post('fname'),
               'lname' => $this->input->post('lname'),
               'photo' => $file_name,
+              'facebook' => empty($this->input->post('facebook')) ? NULL : $this->input->post('facebook'),
+              'twitter' => empty($this->input->post('twitter')) ? NULL : $this->input->post('twitter'),
+              'postcrossing' => empty($this->input->post('postcrossing')) ? NULL : $this->input->post('postcrossing'),
+              'postcrossing_forum' => empty($this->input->post('postcrossing_forum')) ? NULL : $this->input->post('postcrossing_forum'),
+              'show_facebook' => is_null($this->input->post('show-facebook')) ? '1' : '0',
+              'show_twitter' => is_null($this->input->post('show-twitter')) ? '1' : '0',
+              'show_postcrossing' => is_null($this->input->post('show-postcrossing')) ? '1' : '0',
+              'show_forum' => is_null($this->input->post('show-forum')) ? '1' : '0',
           );
+          
           $this->postcards_model->update_profile($profile);
           redirect('profile');
     }
 
     public function load_profile()
     {
-        $data = $this->postcards_model->get_element('id, username, fname, lname, join_date, country, email, twitter, facebook, postcrossing, postcrossing_forum, photo', array(
-            'id' => $this->session->userdata['user_id']
-        ),'user');
+        $data = $this->postcards_model->get_user_info($this->session->userdata['user_id']);
         $data['country_name'] = $this->postcards_model->get_element('name', array('id' => $data['country']), 'countries')['name'];
         $data['join_date'] = date_format(date_create($data['join_date']), 'j M Y');
 
         return $this->load->view('templates/profile_info', $data);
     }
 
-    public function reload($type)
-    {
-      $filter_items = array(
-        'query' => NULL,
-        'tab' => NULL,
-        'type' => $type,
-        'filter' => $this->input->post('filter'),
-        'filter_type' => $this->input->post('filter-type'),
-        'order_by' => $this->input->post('order-by')
-      );
+    public function reload($username, $type)
+      {
+        $filter_items = array(
+          'query' => NULL,
+          'tab' => 5,
+          'type' => $type,
+          'filter' => $this->input->post('filter'),
+          'filter_type' => $this->input->post('filter-type'),
+          'order_by' => $this->input->post('order-by'),
+          'user_id' => $this->postcards_model->get_element('id', array('username' => $username), 'user')['id'],
+        );
 
-      $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
-      $data['username'] = $header['username'];
-      $data['filter_postcards'] = $this->postcards_model->get_filter_postcards();
-      $data['filters'] = $this->postcards_model->get_filter_types();
-      $data['order'] = $this->postcards_model->get_order_types();
-      $postcards = $this->postcards_model->get_results($filter_items);
-      $data['postcard'] = $postcards;
-      return $this->load->view('templates/show_postcards', $data);
+        $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
+        $data['username'] = $header['username'];
+        $data['filter_postcards'] = $this->postcards_model->get_filter_postcards();
+        $data['filters'] = $this->postcards_model->get_filter_types();
+        $data['order'] = $this->postcards_model->get_order_types();
+        $postcards = $this->postcards_model->get_results($filter_items);
+        $data['postcard'] = $postcards;
+        return $this->load->view('templates/show_postcards', $data);
+    }
+
+    public function load_stats($id)
+    {
+        $header =  $this->postcards_model->get_header_info($this->session->userdata['user_id'])[0];
+        $data['id'] = $id;
+        $data['country_count'] = $this->stats_model->get_country_count($id);
+        $data['popular_type'] = $this->stats_model->get_popular_element($id, 'type');
+        $data['popular_state'] = $this->stats_model->get_popular_element($id, 'state');
+        $data['popular_category'] = $this->postcards_model->get_category_name($this->stats_model->get_popular_element($id, 'category_id'));
+        $data['popular_country'] = $this->postcards_model->get_element('name', array('id' => $this->stats_model->get_popular_element($id, 'country')), 'countries');
+        $data['favorites_count'] = $this->stats_model->get_favorites_count($id);
+        $data['collection_count'] = $this->stats_model->get_postcards_count($id, 0);
+        $data['swap_count'] = $this->stats_model->get_postcards_count($id, 1);
+        return $this->load->view('templates/show_stats', $data);
     }
 }

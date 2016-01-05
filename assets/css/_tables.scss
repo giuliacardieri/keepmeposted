@@ -1,29 +1,36 @@
-.edit{
-  display: none;
-}
-
 .table{
-  background-color: $bg-color + 30;
-  border-radius: 10px;
-  margin: 25px 0;
+    background-color: $bg-color + 30;
+    border-radius: 10px;
+    margin: 25px 0;
+    table-layout: fixed;
 }
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{
-  border-top: 0;
+    border-top: 0;
+    position: relative;
 }
 
 .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
-  border-top: 1px solid $bg-color;
-  padding: 12px 5px;
-  vertical-align: middle;
+    border-top: 1px solid $bg-color;
+    padding: 1%;
+    vertical-align: middle;
+    &:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
 
-th:first-child{
-  width: 32px;
+.glyphicon.glyphicon-triangle-top, .glyphicon.glyphicon-triangle-bottom {
+    font-size: 7pt;
+    margin-left: 5px;
+    position: absolute;
 }
 
-td>.glyphicon{
-  font-size: 12pt;
-  padding-bottom: 0;
-  padding-left: 3px;
+.glyphicon.glyphicon-triangle-top {
+    top: 11px;
+}
+
+.glyphicon.glyphicon-triangle-bottom {
+    top: 18px;
 }

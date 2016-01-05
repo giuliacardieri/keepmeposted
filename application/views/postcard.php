@@ -27,7 +27,8 @@
 
                 <?php if ($postcard['is_swap'] == 0): ?>
                     <p><span class="glyphicon glyphicon-calendar"></span>Received on <?php echo $postcard['date_received'] ?></p>
-                    <p><?php echo $postcard['type'] . ' - '.  $postcard['state'] ?></p>
+                    <p><span class="glyphicon glyphicon-info-sign"></span><?php echo $postcard['type']; ?></p>
+                    <p><span class="glyphicon glyphicon-pushpin"></span><?php echo $postcard['state'] ?></p>
 
                     <?php if ($postcard['postcrossing_id']): ?>
                     <p>Postcrossing ID: <?php echo $postcard['postcrossing_id']; ?></p>
@@ -48,7 +49,7 @@
                     <div class="col-md-12 tags-wrapper-postcard">
                       <p><span class="glyphicon glyphicon-tags"></span> Tags</p>
                       <?php foreach ($tags as $key => $tag): ?>
-                        <button class="btn-postcard button"><?php echo $tag['tagname']; ?></button>
+                        <button class="btn-postcard button" data-href="<?php echo site_url('tags/' . $tag['tagname']); ?>"><?php echo $tag['tagname']; ?></button>
                       <?php endforeach; ?>
                 </div>
               </div>
@@ -71,15 +72,15 @@
             		</div>
             		<div class="row">
             				<?php if ($postcard['is_swap'] == 0) :?>
-            						<p class="edit-field col-md-3"><span class="glyphicon glyphicon-map-marker"></span>Sent by</p>
-            				<div class="edit-field col-md-5">
+            					<p class="edit-field col-xs-3 col-sm-3 col-md-3"><span class="glyphicon glyphicon-map-marker"></span>Sent by</p>
+            				    <div class="edit-field col-xs-4 col-sm-4 col-md-5">
             						<input type="text" id="sender" class="received-attr" name="sender" value="<?php echo $postcard['sender']; ?>" data-parsley-errors-container=".sender" data-parsley-required="true">
             						<p class="field-error sender hidden"></p>
-            				</div>
+            				    </div>
             				<?php else: ?>
-            						<p class="edit-field col-md-1"><span class="glyphicon glyphicon-map-marker"></span>
+            						<p class="edit-field col-xs-1 col-sm-1 col-md-1"><span class="glyphicon glyphicon-map-marker"></span>
             				<?php endif; ?>
-            				<div class="edit-field col-md-4">
+            				<div class="edit-field col-xs-5 col-sm-5 col-md-4">
             						<select id="country" name="country" data-parsley-errors-container=".country" data-parsley-required="true">
             								<option value="">Choose a country</option>
             								<?php foreach ($countries as $country ): ?>
@@ -94,8 +95,8 @@
 
             		<?php if ($postcard['is_swap'] == 0): ?>
             				<div class="row">
-            						<p class="edit-field col-md-4"><span class="glyphicon glyphicon-calendar"></span>Received on</p>
-            						<div class="edit-field col-md-6">
+            						<p class="edit-field col-xs-5 col-sm-5 col-md-4"><span class="glyphicon glyphicon-calendar"></span>Received on</p>
+            						<div class="edit-field col-xs-6 col-sm-6 col-md-6">
             								<input type="text" id="datepicker-edit" class="received-attr" name="date" data-parsley-errors-container=".date" data-parsley-required="true">
             								<p class="field-error date hidden"></p>
             						</div>
@@ -146,8 +147,8 @@
             				<input id="swap" type="hidden" name="swap" value="1">
 
             				<div class="row">
-            						<p class="edit-field col-md-3"><span class="glyphicon glyphicon-send"></span>For swap</p>
-            						<div class="edit-field hidden col-md-6">
+            						<p class="edit-field col-xs-4 col-sm-4 col-md-3"><span class="glyphicon glyphicon-send"></span>For swap</p>
+            						<div class="edit-field hidden col-xs-6 col-sm-6 col-md-6">
             								<select id="available" name="available" data-parsley-errors-container=".available" data-parsley-required="true">
             										<option value="1" <?php if ($postcard['is_available'] == 1) { echo 'selected'; } ?>>Available</option>
             										<option value="0" <?php if ($postcard['is_available'] == 0) { echo 'selected'; } ?>>Not available</option>
@@ -162,8 +163,8 @@
                 <input id="tags-value" type="hidden" name="tags-value" value="<?php foreach ($tags as $key => $tag){ echo $key . ','; }?>">
 
             		<div class="row">
-            				<p class="edit-field col-md-1"><span class="glyphicon glyphicon-th-list"></span></p>
-            				<div class="edit-field col-md-6">
+            				<p class="edit-field col-xs-1 col-sm-1 col-md-1"><span class="glyphicon glyphicon-th-list"></span></p>
+            				<div class="edit-field col-xs-6 col-sm-6 col-md-6">
             						<select id="category" name="category" data-parsley-errors-container=".category" data-parsley-required="true">
             								<option value="">Choose a category</option>
             								<?php foreach ($categories as $categories): ?>
@@ -198,7 +199,7 @@
           <?php endif; ?>
 
             <!-- btn wrapper -->
-            <div class="col-md-5 button-postcard-wrapper">
+            <div class="col-xs-12 col-sm-12 col-md-5 button-postcard-wrapper">
                 <button class="button remove-favorite <?php if ($is_favorite == 0) { echo 'hidden';} ?>" data-href="<?php echo site_url('favorites/remove_favorite/'. $postcard['id']); ?>">Remove from Favorites</button>
                 <button class="button add-favorite <?php if ($is_favorite == 1) { echo 'hidden';} ?>" data-href="<?php echo site_url('favorites/add_favorite/'. $postcard['id']); ?>">Add to Favorites</button>
                 <?php if(is_null($postcard['owner'])): ?>

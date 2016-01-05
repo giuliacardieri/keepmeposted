@@ -2,28 +2,36 @@
 class Recommender_model extends CI_Model
 {
 
+    // this function gets the popular recommendations - this ones are the same for all users
+    // the maximum number of recommendations is 40
     public function get_popular_recommendations()
     {
         if(sizeof($this->get_recommended_postcards(false, 0)) > 40) {
-          if(sizeof($this->get_recommended_postcards(false, 1)) > 40) {
-              return $this->get_recommended_postcards(false, 2);
-          }
-          return $this->get_recommended_postcards(false, 1);
+            if(sizeof($this->get_recommended_postcards(false, 1)) > 40) {
+                return $this->get_recommended_postcards(false, 2);
+            }
         }
         return $this->get_recommended_postcards(false, 1);
     }
 
+    // this function gets the personal recommendations based on each user
+    // the maximum number of recommendations is 40
     public function get_personal_recommendations()
     {
-        if(sizeof($this->get_recommended_postcards(true, 0)) > 40) {
-          if(sizeof($this->get_recommended_postcards(true, 1)) > 40) {
-              return $this->get_recommended_postcards(true, 2);
+        // only show the recommendations for users that have a postcard on their collection/for swap
+        $postcards = $this->postcards_model->get_postcards(array('order_element' => 'date_added','order_by' => 'DESC', 'query' => array('user_id' => $this->session->userdata['user_id'])));
+        if (!empty($postcards) || !empty($this->get_favorite_categories())) {
+          if(sizeof($this->get_recommended_postcards(true, 0)) > 40) {
+            if(sizeof($this->get_recommended_postcards(true, 1)) > 40) {
+                return $this->get_recommended_postcards(true, 2);
+            }
           }
           return $this->get_recommended_postcards(true, 1);
         }
-        return $this->get_recommended_postcards(true, 1);
+        return NULL;
     }
 
+    // this function adds attributes to the items from the database
     public function add_attr($recommendations)
     {
         foreach ($recommendations as $key => $postcard) {
@@ -36,6 +44,7 @@ class Recommender_model extends CI_Model
         return $recommendations;
     }
 
+    // get the username of the postcard owner
     public function get_owner_username($id)
     {
         $this->db->select('username');
@@ -43,6 +52,7 @@ class Recommender_model extends CI_Model
         return $query->row_array();
     }
 
+    // defines if a postcard is a favorite of the logged user
     public function is_favorite($data)
     {
         $query = $this->db->get_where('user_favorite_postcard', $data);
@@ -52,22 +62,27 @@ class Recommender_model extends CI_Model
         return false;
     }
 
+    // get the popular categories (the most frequent ones) of all users
     public function get_popular_categories()
     {
         $this->db->select('id');
         $this->db->order_by('count', 'DESC');
-        $query = $this->db->get('categories', 4);
+        $query = $this->db->get('categories', 5);
         return $query->result_array();
     }
 
+    // get the popular countries (the most frequent ones) from all users
     public function get_popular_countries()
     {
         $this->db->select('id');
         $this->db->order_by('count', 'DESC');
-        $query = $this->db->get('countries', 10);
+        $query = $this->db->get('countries', 20);
         return $query->result_array();
     }
 
+    // get the recommended postcards
+    // $personal : if true it gets the personal recommendations
+    // $type : defines the filter that will be applied. It changes if exceeds the allowed maximum number of 40 postcards.
     public function get_recommended_postcards($personal, $type)
     {
         if ($personal) {
@@ -87,7 +102,7 @@ class Recommender_model extends CI_Model
         $where = '((postcards.user_id !=' .  $this->session->userdata['user_id'] . ' and user_favorite_postcard.user_id !=' . $this->session->userdata['user_id'] . ') or (postcards.user_id !=' . $this->session->userdata['user_id'] . ' and postcard_id is null))';
         $this->db->where($where);
 
-        if ($type == 1) {
+        if ($type == 1 || $type == 2 || $type == 3) {
           // get postcards from the most popular categories
           foreach ($categories as $key => $category) {
             if (gettype($category) == 'array')
@@ -101,7 +116,7 @@ class Recommender_model extends CI_Model
           $this->db->where($where_cat);
         }
 
-        if ($type == 2 || $type == 1) {
+        if ($type == 2) {
           // get postcards from the most popular countries
           foreach ($countries as $key => $country) {
             if (gettype($country) == 'array')
@@ -113,8 +128,6 @@ class Recommender_model extends CI_Model
           }
           $where_cou  .= ')';
           $this->db->where($where_cou);
-
-          $this->db->limit(40);
         }
 
         $this->db->order_by('favorite_count', 'DESC');
@@ -127,9 +140,11 @@ class Recommender_model extends CI_Model
             array_push($valid_postcard, $postcard);
         }
         $valid_postcard = array_values(array_unique($valid_postcard, SORT_REGULAR));
-        return $valid_postcard;
+        return array_slice($valid_postcard, 0, 40, true);
     }
 
+    // returns the name of a category
+    // $id : the id of the category
     public function get_category_name($id)
     {
         $this->db->select();
@@ -155,10 +170,11 @@ class Recommender_model extends CI_Model
         }
     }
 
+    // get the explicit and implicit favorite categories of the logged user
     public function get_personal_categories()
     {
         $this->db->select('category_id');
-        $query = $this->db->get_where('postcards', array('user_id !='=> $this->session->userdata['user_id']));
+        $query = $this->db->get_where('postcards', array('user_id'=> $this->session->userdata['user_id']));
         $elements = $query->result_array();
         $category_before = array();
         $categories = array();
@@ -183,16 +199,20 @@ class Recommender_model extends CI_Model
         return $categories;
     }
 
+    // get the most popular/favorite countries from the logged user
     public function get_personal_countries()
     {
         $countries = array();
 
+        // get an array of the favorite countries sorted by its frequency on the favorite postcards of the logged user
         $favorites_countries = array_slice($this->sort_personal_countries($this->postcards_model->get_favorites($this->session->userdata['user_id'])), 0, 17, true);
 
+        // get the most popular countries in a user's collection
         $this->db->select('country');
-        $query = $this->db->get_where('postcards', array('user_id !='=> $this->session->userdata['user_id']));
+        $query = $this->db->get_where('postcards', array('user_id ='=> $this->session->userdata['user_id']));
         $collection_countries = $this->sort_personal_countries($query->result_array());
 
+        // join both arrays
         if (!empty($favorites_countries))
           foreach ($favorites_countries as $key => $element)
               array_push($countries, $key);
@@ -206,6 +226,7 @@ class Recommender_model extends CI_Model
         return $countries;
     }
 
+    // sort an array of countries by the number of its occurence.
     public function sort_personal_countries($array)
     {
         $country = array();

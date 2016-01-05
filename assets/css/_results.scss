@@ -1,22 +1,22 @@
 .search-row, .filter-row {
-		input, select {
-			margin: 0;
+	input, select {
+		margin: 0;
+	}
+	button {
+			width: auto;
+	}
+	p {
+		line-height: 35px;
+	}
+	select {
+		border: 1px solid $lighterColor;
+	}
+	.multiple-selects select {
+		margin: 0 0.5%;
+		&.double {
+			width: 48%;
 		}
-		button {
-				width: auto;
-		}
-		p {
-			line-height: 35px;
-		}
-		select {
-			border: 1px solid $lighterColor;
-		}
-		.multiple-selects select {
-			margin: 0 0.5%;
-			&.double {
-				width: 48%;
-			}
-		}
+	}
 }
 
 .col-md-10.results-wrapper {
@@ -54,12 +54,19 @@
             width: 150%;
         }
     }
+    @media (max-width: 991px) {
+    	margin: 2.5% 0;
+    }
 }
 
 .show-users-wrapper .row .row {
 	padding: 1% 0;
+    @media (max-width: 991px) {
+    	padding: 0;
+    }
 }
 
 .tag-wrapper {
-		display: inline-block;
+	display: inline-block;
+	margin: 0.5%;
 }

@@ -5,6 +5,9 @@
     padding: 4%;
     .img-container .img-wrapper {
         position: relative;
+        @media (max-width: 991px) {
+          margin-bottom: 2.5%;
+        }
         .img-edit {
             background-color: #282828;
             height: 100%;
@@ -14,7 +17,9 @@
         }
         .img-responsive {
           margin: 0 auto;
-          max-height: 450px;
+          @media (min-width: 992px) {
+            max-height: 450px;
+          }
         }
         .edit-img {
           bottom: 0;
@@ -44,6 +49,7 @@
         h2 {
             font-size: 18pt;
             line-height: 20pt;
+            overflow: hidden;
         }
         &.edit-postcard {
             padding: 0 30px;
@@ -72,12 +78,17 @@
     .button-postcard-wrapper {
         bottom: 0;
         padding: 0 4% 4% 0;
-        position: absolute;
         right: 0;
         text-align: right;
+        @media (min-width: 992px) {
+          position: absolute;
+        }
         .button {
             margin-right: 5px;
             width: 15%;
+            @media (max-width: 991px) {
+              width: auto;
+            }
             &.add-favorite {
                 min-width: 122px;
             }
@@ -94,12 +105,12 @@
 button.btn-postcard {
     background-color: $bg-color;
     width: auto;
-    @media (max-width: 1023px) {
+    @media (max-width: 991px) {
       &:hover {
           background-color: $bg-color;
       }
     }
-    @media (min-width: 1024px) {
+    @media (min-width: 991px) {
       &:hover {
           background-color: $bg-color - 10;
       }
@@ -117,10 +128,19 @@ button.btn-postcard {
   .new-chip {
     width: 50%;
   }
+  @media (max-width: 991px) {
+    white-space: normal;
+  }
 }
 
 
 .glyphicon {
     font-size: 10pt;
     margin-right: 5px;
+}
+
+.postcard-load {
+    @media (max-width: 991px) {
+      margin-bottom: 5%;
+    }
 }
