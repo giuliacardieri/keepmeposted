@@ -294,13 +294,17 @@ nav {
 .postcards-wrapper, .postcards-wrapper-smaller, .popular-postcard-wrapper {
   padding: 2.5% 0; }
   .postcards-wrapper .postcard, .postcards-wrapper-smaller .postcard, .popular-postcard-wrapper .postcard {
-    margin: 1% 0; }
+    margin: 1% 0;
+    padding: 0 7.5px; }
     .postcards-wrapper .postcard.col-md-3, .postcards-wrapper-smaller .postcard.col-md-3, .popular-postcard-wrapper .postcard.col-md-3 {
       width: auto; }
     .postcards-wrapper .postcard .postcard-img-wrapper, .postcards-wrapper-smaller .postcard .postcard-img-wrapper, .popular-postcard-wrapper .postcard .postcard-img-wrapper {
       cursor: pointer;
       position: relative; }
       @media (min-width: 993px) {
+        .postcards-wrapper .postcard .postcard-img-wrapper img, .postcards-wrapper-smaller .postcard .postcard-img-wrapper img, .popular-postcard-wrapper .postcard .postcard-img-wrapper img {
+          height: 150px; } }
+      @media (min-width: 1400px) {
         .postcards-wrapper .postcard .postcard-img-wrapper img, .postcards-wrapper-smaller .postcard .postcard-img-wrapper img, .popular-postcard-wrapper .postcard .postcard-img-wrapper img {
           height: 160px; } }
       @media (max-width: 992px) {
@@ -395,7 +399,7 @@ nav {
 
 .new-chip {
   display: inline-block;
-  min-width: 20%; }
+  min-width: 30%; }
   @media (max-width: 991px) {
     .new-chip {
       display: block; } }
@@ -439,7 +443,7 @@ nav {
 .button-wrapper-settings {
   margin: 2.5% 0; }
   .button-wrapper-settings .button.delete-account-btn {
-    width: 25%; }
+    width: auto; }
 
 .search-row input, .search-row select, .filter-row input, .filter-row select {
   margin: 0; }
@@ -464,6 +468,10 @@ nav {
   padding: 2.5%; }
   .user-item p {
     margin: 2.5% 0; }
+    @media (min-width: 992px) and (max-width: 1210px) {
+      .user-item p {
+        font-size: 10pt;
+        line-height: 12pt; } }
   .user-item h2 {
     font-size: 13pt;
     line-height: 15pt; }
@@ -626,8 +634,8 @@ nav {
   margin-right: 5px; }
 
 .private-label {
-  left: 22%;
-  top: 30%; }
+  left: 25px;
+  top: 10px; }
   @media (max-width: 991px) and (min-width: 768px) {
     .private-label {
       left: 15%; } }
@@ -691,7 +699,10 @@ label {
   label.label-selected {
     top: 5%; }
   label.new-chip-label {
-    top: 50%; }
+    top: 35px; }
+    @media (min-width: 993px) and (max-width: 1200px) {
+      label.new-chip-label {
+        top: 10px; } }
 
 input[type="reset"],
 input[type="submit"],
@@ -703,7 +714,7 @@ input[type="submit"],
   height: initial;
   margin: 0;
   padding: 5px 10px;
-  width: 10%; }
+  width: auto; }
   input[type="reset"]:active, input[type="reset"]:focus, input[type="reset"]:hover,
   input[type="submit"]:active,
   input[type="submit"]:focus,
@@ -1007,6 +1018,7 @@ main.index {
         .popular-postcard-wrapper .postcard .postcard-img-wrapper img {
           height: auto; } }
   .popular-postcard-wrapper .stats-square {
+    cursor: pointer;
     margin-top: 0; }
 
 .fav-category-btn {
@@ -1026,6 +1038,9 @@ main.index {
   border-radius: 5px;
   margin-bottom: 2.5%;
   padding: 4%; }
+  @media (min-width: 993px) and (max-width: 1200px) {
+    .postcard-container {
+      padding: 6% 4%; } }
   .postcard-container .img-container .img-wrapper {
     position: relative; }
     @media (max-width: 991px) {
@@ -1093,7 +1108,7 @@ main.index {
         position: absolute; } }
     .postcard-container .button-postcard-wrapper .button {
       margin-right: 5px;
-      width: 15%; }
+      width: auto; }
       @media (max-width: 991px) {
         .postcard-container .button-postcard-wrapper .button {
           width: auto; } }
@@ -1117,10 +1132,21 @@ button.btn-postcard {
 .tags-wrapper-postcard {
   margin: 2.5% 0; }
   .tags-wrapper-postcard button {
-    margin: 1% 0; }
-  .tags-wrapper-postcard .chip-wrapper .chip {
-    margin: 1% 2px; }
+    float: left;
+    margin: 1% 0.5%; }
+    @media (min-width: 993px) {
+      .tags-wrapper-postcard button {
+        margin: 1%; } }
+    .tags-wrapper-postcard button.btn-add-chip {
+      float: none; }
+  .tags-wrapper-postcard .chip-wrapper {
+    display: block; }
+    .tags-wrapper-postcard .chip-wrapper .chip {
+      float: left;
+      margin: 1% 2px; }
   .tags-wrapper-postcard .new-chip {
+    display: block;
+    float: left;
     width: 50%; }
   @media (max-width: 991px) {
     .tags-wrapper-postcard {

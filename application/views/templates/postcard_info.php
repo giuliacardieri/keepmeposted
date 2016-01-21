@@ -43,7 +43,7 @@
 				<div class="col-md-12 tags-wrapper-postcard">
 					<p><span class="glyphicon glyphicon-tags"></span> Tags</p>
 					<?php foreach ($tags as $key => $tag): ?>
-						<button class="btn-postcard button"><?php echo $tag['tagname']; ?></button>
+						<button class="btn-postcard button" data-href="<?php echo site_url('tags/' . $tag['tagname']); ?>"><?php echo $tag['tagname']; ?></button>
 					<?php endforeach; ?>
 		</div>
 	</div>

@@ -47,10 +47,18 @@
                 <?php if (!empty($tags)): ?>
                 <div class="row">
                     <div class="col-md-12 tags-wrapper-postcard">
-                      <p><span class="glyphicon glyphicon-tags"></span> Tags</p>
-                      <?php foreach ($tags as $key => $tag): ?>
-                        <button class="btn-postcard button" data-href="<?php echo site_url('tags/' . $tag['tagname']); ?>"><?php echo $tag['tagname']; ?></button>
-                      <?php endforeach; ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p><span class="glyphicon glyphicon-tags"></span> Tags</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php foreach ($tags as $key => $tag): ?>
+                                    <button class="btn-postcard button" data-href="<?php echo site_url('tags/' . $tag['tagname']); ?>"><?php echo $tag['tagname']; ?></button>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
                 </div>
               </div>
               <?php endif; ?>
@@ -103,7 +111,7 @@
             				</div>
             				<script>
             						var postcardDate = '<?php echo $postcard['date_received']; ?>';
-            						$( "#datepicker-edit" ).datepicker().val(postcardDate);
+            						$( "#datepicker-edit" ).datepicker({maxDate: new Date}).val(postcardDate);
             				</script>
             				<div class="row">
             						<div class="edit-field col-md-6">

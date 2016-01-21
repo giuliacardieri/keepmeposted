@@ -40,7 +40,7 @@
 				</div>
 				<div class="field-wrapper col-md-5 col-lg-5">
 					<div class="row">
-						<div class="col-md-2 col-lg-2">
+						<div class="col-md-3 col-lg-2">
 							<p class="small">Filter by</p>
 						</div>
 						<div class="multiple-selects col-md-9 col-lg-9">
@@ -56,10 +56,10 @@
 				</div>
 				<div class="field-wrapper col-md-3 col-lg-3">
 					<div class="row">
-						<div class="col-md-4 col-lg-4">
+						<div class="col-md-5 col-lg-4">
 							<p class="small">Order by</p>
 						</div>
-						<div class="col-md-8 col-lg-8">
+						<div class="col-md-7 col-lg-8">
 							<select id="order-by" name="order-by">
 								<?php foreach ($order as $key => $order_type): ?>
 									<option value="<?php echo $key; ?>"><?php echo $order_type; ?></option>

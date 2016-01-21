@@ -88,7 +88,7 @@ class Postcard extends MY_Controller {
 
         if (!$this->upload->do_upload('photo'))
         {
-            $file_name = 'postcard.jpg';
+            $file_name = 'postcard.png';
             $upload_data = $this->upload->data();
         } else {
             $upload_data = $this->upload->data();
@@ -104,7 +104,7 @@ class Postcard extends MY_Controller {
             'type' => $this->input->post('type'),
             'postcrossing_id' => $this->input->post('postcrossing-id'),
             'is_available' => $this->input->post('available'),
-            'date_received' => date('Y-m-d', strtotime($this->input->post('date'))),
+            'date_received' => empty($this->input->post('date')) ? NULL : date('Y-m-d', strtotime($this->input->post('date'))),
             'sender' => $this->input->post('sender'),
             'is_swap' => $this->input->post('swap'),
         );
@@ -143,7 +143,8 @@ class Postcard extends MY_Controller {
             $file_name = $old_file;
             $upload_data = $this->upload->data();
         } else {
-            unlink($config['upload_path'] . $old_file);
+            if ($old_file != 'postcard.png')
+                unlink($config['upload_path'] . $old_file);
             $upload_data = $this->upload->data();
             $file_name = $upload_data['file_name'];
         }
@@ -157,7 +158,7 @@ class Postcard extends MY_Controller {
             'type' => $this->input->post('type'),
             'postcrossing_id' => $this->input->post('postcrossing-id'),
             'is_available' => $this->input->post('available'),
-            'date_received' => date('Y-m-d', strtotime($this->input->post('date'))),
+            'date_received' => empty($this->input->post('date')) ? NULL : date('Y-m-d', strtotime($this->input->post('date'))),
             'sender' => $this->input->post('sender'),
             'is_swap' => $this->input->post('swap'),
             'photo' => $file_name,

@@ -69,6 +69,7 @@ class Stats_model extends CI_model
     	$this->db->select('count(distinct country) as count', false);
 		$this->db->from('postcards');
 		$this->db->where('user_id', $id);
+        $this->db->where('is_swap', 0);
     	$query = $this->db->get();
     	$values = $query->row_array();
     	return $values['count'];

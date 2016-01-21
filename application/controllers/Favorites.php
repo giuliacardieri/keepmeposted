@@ -40,12 +40,6 @@ class Favorites extends MY_Controller {
         $this->postcards_model->add_favorite($data); 
 
         $data = $this->postcards_model->get_user_info();
-        $this->load->library('email');
-        $this->email->from('giulia.cardieri@gmail.com', 'Keep Me Posted');
-        $this->email->to('giulia.cardieri@gmail.com'); 
-        $this->email->subject('Someone favorited your postcard!');
-        $this->email->message('Hi ' . $data['fname'] . ', \n Someone favorited your postcard!');  
-        $this->email->send();
     }
 
     public function remove_favorite($id)

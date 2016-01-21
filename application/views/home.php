@@ -3,7 +3,7 @@
     <div class="popular-postcard-wrapper row">
       <div class="col-md-3">
         <div class="row">
-          <div class="col-md-12 stats-square">
+          <div data-href="<?php echo site_url('collection'); ?>" class="col-md-12 stats-square">
             <div class="square-wrapper">
               <h2><?php echo $collection_count; ?></h2>
               <p>Postcards</p>
@@ -11,7 +11,7 @@
           </div> 
         </div>
         <div class="row"> 
-          <div class="col-md-12 stats-square">
+          <div data-href="<?php echo site_url('favorites'); ?>" class="col-md-12 stats-square">
             <div class="square-wrapper color-2">
               <h2><span class="stats-icon glyphicon glyphicon-star"></span><?php echo $favorites_count; ?></h2>
               <p>Favorites</p>
@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 stats-square">
+          <div data-href="<?php echo site_url('stats'); ?>" class="col-md-12 stats-square">
             <div class="square-wrapper color-3">
               <h2><span class="stats-icon glyphicon glyphicon-globe"></span><?php echo $country_count; ?></h2>
               <p>Countries</p>
@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 stats-square">
+          <div data-href="<?php echo site_url('stats'); ?>" class="col-md-12 stats-square">
             <div class="square-wrapper color-4">
               <h2><span class="stats-icon glyphicon glyphicon-list"></span><?php echo $popular_category[0]['name']; ?></h2>
               <p>Most popular category</p>

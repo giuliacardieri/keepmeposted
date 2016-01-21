@@ -9,10 +9,10 @@
 					<div class="col-md-4">
 						<div class="user-item" data-href="<?php echo site_url('profile/' . $user['username']); ?>">
 								<div class="row">
-									<div class="user-img-wrapper col-xs-4 col-sm-4 col-md-4">
+									<div class="user-img-wrapper col-xs-4 col-sm-4 col-md-6 col-lg-5">
 		                				<img src="<?php echo asset_url('users/' . $user['photo']); ?>" alt="user photo">
 									</div>
-									<div class="user-info-wrapper col-xs-8 col-sm-8 col-md-8">
+									<div class="user-info-wrapper col-xs-8 col-sm-8 col-md-6 col-lg-7">
 										<h2><?php echo $user['fname'] . ' ' . $user['lname']; ?></h2>
 										<p><span class="glyphicon glyphicon-user"></span><?php echo $user['username']; ?></p>
 										<p class="flag-sibling"><span class="glyphicon glyphicon-map-marker"></span><?php echo $user['country_name']; ?></p>

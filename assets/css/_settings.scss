@@ -27,7 +27,7 @@
 
 .new-chip {
     display: inline-block;
-    min-width: 20%;
+    min-width: 30%;
     @media (max-width: 991px) {
         display: block;
     }
@@ -80,6 +80,6 @@
 .button-wrapper-settings {
     margin: 2.5% 0;
     .button.delete-account-btn {
-        width: 25%;
+        width: auto;
     }
 }

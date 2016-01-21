@@ -180,7 +180,7 @@ $(function() {
             hideMenu();
     });
 
-    $( "#datepicker-add" ).datepicker();
+    $("#datepicker-add").datepicker({maxDate: new Date});
 
     $(".back").on('click', function() {
         parent.history.back();
@@ -238,7 +238,7 @@ $(function() {
         });
     });
 
-    $(".showPostcard, .btn-postcard, .delete, .settings-profile-btn, .postcard, .fav-category-btn, .favorite-categories-wrapper .glyphicon-pencil").on('click', function() {
+    $(".popular-postcard-wrapper .stats-square, .showPostcard, .btn-postcard, .delete, .settings-profile-btn, .postcard, .fav-category-btn, .favorite-categories-wrapper .glyphicon-pencil").on('click', function() {
         window.document.location = $(this).data("href");
     });
 
@@ -246,7 +246,7 @@ $(function() {
         window.document.location = $(this).data("href");
     });
 
-    $('.results-inner-wrapper').on('click', '.user-item, .btn-postcard' ,function(){
+    $('.results-inner-wrapper, .postcard-load').on('click', '.user-item, .btn-postcard' ,function(){
         window.document.location = $(this).data("href");
     });
 
@@ -376,9 +376,10 @@ $(function() {
         e.preventDefault();
         $('.profile-nav li a').removeClass('active');
         $(this).addClass('active');
-        $.get( $(this).attr('data-href'), function(data) {
-          $( ".postcards-wrapper-smaller" ).html( data );
+        $.get($(this).attr('data-href'), function(data) {
+          $(".postcards-wrapper-smaller").html( data );
         });
+
         if ($(this).hasClass('stats')) {
             $('.search-row').addClass('hidden');
             setTimeout(function (){
@@ -389,8 +390,10 @@ $(function() {
                     showStats(JSON.parse(data), 'categories', pieOptions);
                 });
             }, 100);
-        } else
+        } else {
             $('.search-row').removeClass('hidden');
+            $('#filter-type').change();
+        }
     });
 
     $('.edit-profile-btn').on('click', function(e){
@@ -409,10 +412,28 @@ $(function() {
     $('#form-profile').ajaxForm({
       success: function() {
           saveProfile();
-          console.log('sucesso');
       }
     });
 
+    $('.postcards-wrapper-smaller').on('click', '.favorite-icon', function(e){
+      e.stopPropagation();
+      var $el =  $(this);
+        $.ajax({
+            type: "POST",
+            url: $(this).attr('data-href'),
+            data: '',
+            success: function() {
+              if ($el.hasClass('add'))
+                $el.siblings('.favorite-icon.remove').removeClass('hidden');
+              else
+                $el.siblings('.favorite-icon.add').removeClass('hidden');
+              $el.addClass('hidden')
+
+            }
+        });
+    });    
+
+    // delegate and stop propagation doesn't work together so it was necessary to create this event too besides the one above
     $('.favorite-icon').on('click', function(e){
       e.stopPropagation();
       var $el =  $(this);
@@ -452,14 +473,14 @@ $(function() {
 
     $('.search-btn').on('click', function(e){
         e.preventDefault();
-        if (($('#search-field').val()).trim().length > 0 && !unsaved)
+        if ($('#search-field').parsley().isValid() && !unsaved)
             $('.search-form').submit();
     });
 
     $('.search-btn-mobile').on('click', function(e){
-      e.preventDefault();
-      if (($('#search-field-mobile').val()).trim().length > 0)
-        $('.search-form-mobile').submit();
+        e.preventDefault();
+        if ($('#search-field-mobile').parsley().isValid())
+            $('.search-form-mobile').submit();
     });
 
     $('.results-nav li a').on('click', function(e){
@@ -483,7 +504,6 @@ $(function() {
     $('#type, #filter-type, #order-by').on('change', function(){
       var url = ($('.results-nav li a.active').length > 0) ? $('.results-nav li a.active').data("href") : $('#filters-form').data("href");
       url = ($('.profile-nav li a.active').length > 0)  ? url + '/' + $('.profile-nav li a.active').html() : url;
-      console.log(url);
       $.ajax({
           type: "POST",
           url: url,
@@ -546,11 +566,9 @@ $(function() {
     setTimeout(function (){
         $.get($('.countries-chart-wrapper').attr('data-href'), function(data){
             showStats(JSON.parse(data), 'countries', pieOptions);
-            console.log(data);
         });
         $.get($('.categories-chart-wrapper').attr('data-href'), function(data){
             showStats(JSON.parse(data), 'categories', pieOptions);
-            console.log(data);
         });
     }, 100);
 
@@ -626,4 +644,5 @@ $(function() {
             $('.search-btn').click();
         }
     });
+
 });

@@ -34,9 +34,9 @@ class Postcards_model extends CI_Model {
                 $this->db->where('postcards.user_id', $attr['user_id']);
 
             if ($attr['type'] == '3')
-                $this->db->where('is_swap', 1);
+                $this->db->where('postcards.is_swap', 1);
             else if ($attr['type'] == '2')
-                $this->db->where('is_swap', 0);
+                $this->db->where('postcards.is_swap', 0);
 
             if ($attr['filter'] != 'a')
                 $this->db->where('postcards.'.$attr['filter'], $attr['filter_type']);
@@ -55,9 +55,9 @@ class Postcards_model extends CI_Model {
             if (!is_null($attr['user_id']))
                 $this->db->where('user_id', $attr['user_id']);
 
-           if (strtolower($attr['type']) == 'swap')
+           if (strtolower($attr['type']) == 'swap' || $attr['type'] == '3')
                 $this->db->where('is_swap', 1);
-            else if (strtolower($attr['type']) == 'collection')
+            else if (strtolower($attr['type']) == 'collection' || $attr['type'] == '2')
                 $this->db->where('is_swap', 0);
 
             if ($attr['filter'] != 'a')
@@ -245,7 +245,7 @@ class Postcards_model extends CI_Model {
             $this->db->from('postcards');
             $this->db->join('tags', 'id = postcard_id', 'inner');
             $this->db->group_by('postcards.id');
-            $this->db->like('tagname', $tag);
+            $this->db->where('tagname', $tag);
             $query = $this->db->get();
             $postcards = $query->result_array();
             return $this->add_attr($postcards);
@@ -302,7 +302,8 @@ class Postcards_model extends CI_Model {
         // add a postcards to the favorites table
         public function add_favorite($data)
         {
-            $this->db->insert('user_favorite_postcard', $data);
+            if (!$this->is_favorite($data))
+                $this->db->insert('user_favorite_postcard', $data);
         }
 
         // removes a postcards from the favorites table
@@ -382,7 +383,8 @@ class Postcards_model extends CI_Model {
                 'id' => $id,
                 'user_id' => $this->session->userdata['user_id']
             ),'postcards')['photo'];
-            unlink($path . $file);
+            if ($file != 'postcard.png')
+                unlink($path . $file);
             $this->db->delete('postcards', array('id' => $id, 'user_id' => $this->session->userdata['user_id']));
         }
 

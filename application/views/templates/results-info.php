@@ -2,9 +2,6 @@
     <div class="col-md-12 postcards-wrapper">
         <?php if ($postcard != null): ?>
             <?php foreach ($postcard as $key => $postcard_item): ?>
-            <?php if ($key % 4 == 0): ?>
-                <div class="row">
-            <?php endif; ?>
                     <div class="postcard col-md-3" data-href="<?php echo site_url($postcard_item['url_attr'] . '/postcard/' . $postcard_item['id']) ?>">
                         <div class="postcard-img-wrapper">
                             <div class="postcard-extra hidden">
@@ -20,9 +17,6 @@
                           <img src="<?php echo asset_url('postcards/' . $postcard_item['photo']); ?>">
                         </div>
                     </div>
-            <?php if ((($key+1) % 4 == 0) || $key == sizeof($postcard)-1): ?>
-                </div>
-            <?php endif; ?>
             <?php endforeach; ?>
         <?php else: ?>
         <p class="col-md-12">No postcards from your <?php echo $type; ?> were found.</p>

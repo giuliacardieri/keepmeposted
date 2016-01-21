@@ -49,7 +49,7 @@
                     <p class="edit-field col-xs-6 col-sm-6 col-md-6"><span class="glyphicon glyphicon-user"></span><?php echo $username; ?></p>
                   </div>
                   <div class="row">
-                      <p class="edit-field col-xs-3 col-sm-3 col-md-2"><span class="glyphicon glyphicon-map-marker"></span></span>From </p>
+                      <p class="edit-field col-xs-3 col-sm-3 col-md-3"><span class="glyphicon glyphicon-map-marker"></span></span>From </p>
                       <div class="edit-field col-xs-6 col-sm-6 col-md-4">
                             <select id="country" name="country" data-parsley-errors-container=".country" data-parsley-required="true">
                                 <?php foreach ($countries as $country_ele ): ?>

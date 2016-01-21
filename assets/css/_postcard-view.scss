@@ -1,146 +1,162 @@
 .postcard-container {
-    background-color: #262729;
-    border-radius: $border-radius;
-    margin-bottom: 2.5%;
-    padding: 4%;
-    .img-container .img-wrapper {
-        position: relative;
-        @media (max-width: 991px) {
-          margin-bottom: 2.5%;
-        }
-        .img-edit {
-            background-color: #282828;
-            height: 100%;
-            opacity: 0.5;
-            position: absolute;
-            width: 100%;
-        }
-        .img-responsive {
-          margin: 0 auto;
-          @media (min-width: 992px) {
-            max-height: 450px;
-          }
-        }
-        .edit-img {
-          bottom: 0;
-          height: 35%;
-          left: 0;
-          margin: auto;
-          position: absolute;
-          right: 0;
-          text-align: center;
-          top: 0;
-          .glyphicon {
-            font-size: 75pt;
-            margin: 0;
-          }
-          input#photo {
-              border: 0;
-              margin: 0 auto;
-              padding: 0;
-              max-width: 30%;
-          }
-        }
-    }
-    .postcard-text-container {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        h2 {
-            font-size: 18pt;
-            line-height: 20pt;
-            overflow: hidden;
-        }
-        &.edit-postcard {
-            padding: 0 30px;
-        }
-        p {
-            margin: 2.5% auto;
-            &.flag-sibling {
-              margin: -2.5% 0;
-            }
-            &.edit-field {
-                line-height: 41px;
-                margin: 0;
-            }
-        }
-        .edit-field {
-            padding: 0 1%;
-            #description, #fname, #lname {
-                font-size: 18pt;
-                margin-top: 0;
-            }
-            input, select {
-                margin: 2.5% 0;
-            }
-        }
-    }
-    .button-postcard-wrapper {
-        bottom: 0;
-        padding: 0 4% 4% 0;
-        right: 0;
-        text-align: right;
-        @media (min-width: 992px) {
-          position: absolute;
-        }
-        .button {
-            margin-right: 5px;
-            width: 15%;
-            @media (max-width: 991px) {
-              width: auto;
-            }
-            &.add-favorite {
-                min-width: 122px;
-            }
-            &.remove-favorite {
-                min-width: 160px;
-            }
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-    }
+	background-color: #262729;
+	border-radius: $border-radius;
+	margin-bottom: 2.5%;
+	padding: 4%;
+	@media (min-width: 993px) and (max-width: 1200px) {
+		padding: 6% 4%;
+	}
+	.img-container .img-wrapper {
+		position: relative;
+		@media (max-width: 991px) {
+		  margin-bottom: 2.5%;
+		}
+		.img-edit {
+			background-color: #282828;
+			height: 100%;
+			opacity: 0.5;
+			position: absolute;
+			width: 100%;
+		}
+		.img-responsive {
+		  margin: 0 auto;
+		  @media (min-width: 992px) {
+			max-height: 450px;
+		  }
+		}
+		.edit-img {
+		  bottom: 0;
+		  height: 35%;
+		  left: 0;
+		  margin: auto;
+		  position: absolute;
+		  right: 0;
+		  text-align: center;
+		  top: 0;
+		  .glyphicon {
+			font-size: 75pt;
+			margin: 0;
+		  }
+		  input#photo {
+			  border: 0;
+			  margin: 0 auto;
+			  padding: 0;
+			  max-width: 30%;
+		  }
+		}
+	}
+	.postcard-text-container {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		h2 {
+			font-size: 18pt;
+			line-height: 20pt;
+			overflow: hidden;
+		}
+		&.edit-postcard {
+			padding: 0 30px;
+		}
+		p {
+			margin: 2.5% auto;
+			&.flag-sibling {
+			  margin: -2.5% 0;
+			}
+			&.edit-field {
+				line-height: 41px;
+				margin: 0;
+			}
+		}
+		.edit-field {
+			padding: 0 1%;
+			#description, #fname, #lname {
+				font-size: 18pt;
+				margin-top: 0;
+			}
+			input, select {
+				margin: 2.5% 0;
+			}
+		}
+	}
+	.button-postcard-wrapper {
+		bottom: 0;
+		padding: 0 4% 4% 0;
+		right: 0;
+		text-align: right;
+		@media (min-width: 992px) {
+		  position: absolute;
+		}
+		.button {
+			margin-right: 5px;
+			width: auto;
+			@media (max-width: 991px) {
+			  width: auto;
+			}
+			&.add-favorite {
+				min-width: 122px;
+			}
+			&.remove-favorite {
+				min-width: 160px;
+			}
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
 }
 
 button.btn-postcard {
-    background-color: $bg-color;
-    width: auto;
-    @media (max-width: 991px) {
-      &:hover {
-          background-color: $bg-color;
-      }
-    }
-    @media (min-width: 991px) {
-      &:hover {
-          background-color: $bg-color - 10;
-      }
-    }
+	background-color: $bg-color;
+	width: auto;
+	@media (max-width: 991px) {
+	  &:hover {
+		  background-color: $bg-color;
+	  }
+	}
+	@media (min-width: 991px) {
+	  &:hover {
+		  background-color: $bg-color - 10;
+	  }
+	}
 }
 
 .tags-wrapper-postcard {
-  margin: 2.5% 0;
-  button{
-    margin: 1% 0;
-  }
-  .chip-wrapper .chip {
-    margin: 1% 2px;
-  }
-  .new-chip {
-    width: 50%;
-  }
-  @media (max-width: 991px) {
-    white-space: normal;
-  }
+  	margin: 2.5% 0;
+  	button{
+		float: left;
+		margin: 1% 0.5%;
+		@media (min-width: 993px) {
+			margin: 1%;
+		}
+		&.btn-add-chip {
+			float: none;
+		}
+  	}
+	.chip-wrapper {
+		display: block;
+		 .chip {
+			float: left;
+			margin: 1% 2px;
+	  	}
+	 } 
+  	.new-chip {
+  		display: block;
+  		float: left;
+		width: 50%;
+  	}
+ 	 @media (max-width: 991px) {
+		white-space: normal;
+  	}
 }
 
 
 .glyphicon {
-    font-size: 10pt;
-    margin-right: 5px;
+	font-size: 10pt;
+	margin-right: 5px;
 }
 
 .postcard-load {
-    @media (max-width: 991px) {
-      margin-bottom: 5%;
-    }
+	@media (max-width: 991px) {
+	  margin-bottom: 5%;
+	}
 }
